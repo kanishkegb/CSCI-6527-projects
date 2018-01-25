@@ -5,6 +5,32 @@ import numpy as np
 import pdb
 
 
+def plot_BGR(img_b, img_g, img_r, img_bgr):
+
+    # cv2 uses BGR, but plt uses RGB
+    plt.subplot(141)
+    plt.imshow(cv2.cvtColor(img_b, cv2.COLOR_BGR2RGB))
+    plt.title('Blue')
+    plt.xticks([]), plt.yticks([])
+
+    plt.subplot(142)
+    plt.imshow(cv2.cvtColor(img_g, cv2.COLOR_BGR2RGB))
+    plt.title('Green')
+    plt.xticks([]), plt.yticks([])
+
+    plt.subplot(143)
+    plt.imshow(cv2.cvtColor(img_r, cv2.COLOR_BGR2RGB))
+    plt.title('Red')
+    plt.xticks([]), plt.yticks([])
+
+    plt.subplot(144)
+    plt.imshow(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
+    plt.title('BGR')
+    plt.xticks([]), plt.yticks([])
+
+    return
+
+
 img_full = cv2.imread('00608r.jpg', 0)
 
 # crop the original image to remove outer white border
@@ -28,22 +54,5 @@ img_bgr[:, :, 0] = img_b[:, :, 0]
 img_bgr[:, :, 1] = img_g[:, :, 1]
 img_bgr[:, :, 2] = img_r[:, :, 2]
 
-
-# cv2 uses BGR, but plt uses RGB
-plt.subplot(141)
-plt.imshow(cv2.cvtColor(img_b, cv2.COLOR_BGR2RGB))
-plt.title('Blue')
-
-plt.subplot(142)
-plt.imshow(cv2.cvtColor(img_g, cv2.COLOR_BGR2RGB))
-plt.title('Green')
-
-plt.subplot(143)
-plt.imshow(cv2.cvtColor(img_r, cv2.COLOR_BGR2RGB))
-plt.title('Red')
-
-plt.subplot(144)
-plt.imshow(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
-plt.title('BGR')
-
+plot_BGR(img_b, img_g, img_r, img_bgr)
 plt.show()
