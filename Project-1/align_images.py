@@ -31,7 +31,7 @@ def plot_BGR(img_b, img_g, img_r, img_bgr):
     return
 
 
-img_full = cv2.imread('00608r.jpg', 0)
+img_full = cv2.imread('images/00608r.jpg', 0)
 
 # crop the original image to remove outer white border
 t, b = 10, 7

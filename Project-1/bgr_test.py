@@ -5,7 +5,7 @@ import numpy as np
 import pdb
 
 
-img = cv2.imread('lakeandballoon.jpg', 1)
+img = cv2.imread('images/lakeandballoon.jpg', 1)
 
 img_h, img_w, img_ch = img.shape
 
