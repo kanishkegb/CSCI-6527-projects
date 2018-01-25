@@ -15,22 +15,35 @@ img = img_full[t:img_full.shape[0] - b, l:img_full.shape[1] - r]
 img_h, img_w = img.shape
 split_h = int(img_h / 3)
 
-img_b = img.copy()[:split_h, :]
-img_g = img.copy()[split_h:split_h * 2, :]
-img_r = img.copy()[split_h * 2:split_h * 3, :]
+img_b = np.zeros((split_h, img_w, 3), 'uint8')
+img_g = np.zeros((split_h, img_w, 3), 'uint8')
+img_r = np.zeros((split_h, img_w, 3), 'uint8')
 
-# pdb.set_trace()
+img_b[:, :, 0] = img[:split_h, :]
+img_g[:, :, 1] = img[split_h:split_h * 2, :]
+img_r[:, :, 2] = img[split_h * 2:split_h * 3, :]
 
 img_bgr = np.zeros((split_h, img_w, 3), 'uint8')
+img_bgr[:, :, 0] = img_b[:, :, 0]
+img_bgr[:, :, 1] = img_g[:, :, 1]
+img_bgr[:, :, 2] = img_r[:, :, 2]
 
-# for i in range(3):
-img_bgr[:, :, 0] = img_b
-img_bgr[:, :, 1] = img_g
-img_bgr[:, :, 2] = img_r
 
-plt.subplot(141), plt.imshow(img_b,'gray'), plt.title('Blue')
-plt.subplot(142), plt.imshow(img_g,'gray'), plt.title('Green')
-plt.subplot(143), plt.imshow(img_r,'gray'), plt.title('Red')
-plt.subplot(144), plt.imshow(img_bgr,'gray'), plt.title('BGR')
+# cv2 uses BGR, but plt uses RGB
+plt.subplot(141)
+plt.imshow(cv2.cvtColor(img_b, cv2.COLOR_BGR2RGB))
+plt.title('Blue')
+
+plt.subplot(142)
+plt.imshow(cv2.cvtColor(img_g, cv2.COLOR_BGR2RGB))
+plt.title('Green')
+
+plt.subplot(143)
+plt.imshow(cv2.cvtColor(img_r, cv2.COLOR_BGR2RGB))
+plt.title('Red')
+
+plt.subplot(144)
+plt.imshow(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
+plt.title('BGR')
 
 plt.show()
