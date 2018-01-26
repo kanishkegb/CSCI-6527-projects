@@ -93,40 +93,81 @@ def detect_edges(img):
     return t, b, l, r
 
 
+def align_bg(img_b, img_g):
 
-img_full = cv2.imread('images/01597v.jpg', 0)
+    h, w = img_b.shape[:2]
+    t = int(h / 3)
+    b = int(h * 2 / 3)
+    l = int(w / 3)
+    r = int(w * 2 / 3)
+    t, b = 0, -1
+    l, r = 0, -1
 
-# crop the original image to remove outer white border
-t, b, l, r = detect_edges(img_full)
-img = img_full[t:b, l:r]
+    im1 = img_b[t:b, l:r, 0]
+    im2 = img_g[t:b, l:r, 1]
 
-# plt.imshow(img)
-# plt.show()
+    min_err = 1e100
+    min_h_roll, min_w_roll = 0, 0
+    for h_roll in range(-100, 100, 5):
+        im2_h_roll = np.roll(im2, h_roll, axis=0)
+        for w_roll in  range(-100, 100, 5):
+            im2_w_roll = np.roll(im2_h_roll, w_roll, axis=1)
+            err = np.sum(pow(im1 - im2_w_roll, 2))
+            # print(err)
+            if err < min_err:
+                min_err = err
+                min_h_roll, min_w_roll = h_roll, w_roll
 
-# pdb.set_trace()
+    im2_h_roll = np.roll(img_g, min_h_roll, axis=0)
+    im2_w_roll = np.roll(im2_h_roll, min_w_roll, axis=1)
+    pdb.set_trace()
+    return im2_w_roll[:, :, 1]
 
-img_h, img_w = img.shape
-split_h = int(img_h / 3)
 
-img_b = np.zeros((split_h, img_w, 3), 'uint8')
-img_g = np.zeros((split_h, img_w, 3), 'uint8')
-img_r = np.zeros((split_h, img_w, 3), 'uint8')
+if __name__ == '__main__':
+    img_full = cv2.imread('images/01597v.jpg', 0)
 
-img_b[:, :, 0] = img[:split_h, :]
-img_g[:, :, 1] = img[split_h:split_h * 2, :]
-img_r[:, :, 2] = img[split_h * 2:split_h * 3, :]
+    # crop the original image to remove outer white border
+    t, b, l, r = detect_edges(img_full)
+    img = img_full[t:b, l:r]
 
-img_bgr = np.zeros((split_h, img_w, 3), 'uint8')
-img_bgr[:, :, 0] = img_b[:, :, 0]
-img_bgr[:, :, 1] = img_g[:, :, 1]
-img_bgr[:, :, 2] = img_r[:, :, 2]
+    # plt.imshow(img)
+    # plt.show()
 
-plot_BGR(img_b, img_g, img_r, img_bgr)
-figManager = plt.get_current_fig_manager()
-figManager.window.showMaximized()
+    # pdb.set_trace()
 
-plot_fig(img_bgr)
-figManager = plt.get_current_fig_manager()
-figManager.window.showMaximized()
+    img_h, img_w = img.shape
+    split_h = int(img_h / 3)
 
-plt.show()
+    img_b = np.zeros((split_h, img_w, 3), 'uint8')
+    img_g = np.zeros((split_h, img_w, 3), 'uint8')
+    img_r = np.zeros((split_h, img_w, 3), 'uint8')
+
+    img_b[:, :, 0] = img[:split_h, :]
+    img_g[:, :, 1] = img[split_h:split_h * 2, :]
+    img_r[:, :, 2] = img[split_h * 2:split_h * 3, :]
+
+    img_bgr_raw = np.zeros((split_h, img_w, 3), 'uint8')
+    img_bgr_raw[:, :, 0] = img_b[:, :, 0]
+    img_bgr_raw[:, :, 1] = img_g[:, :, 1]
+    img_bgr_raw[:, :, 2] = img_r[:, :, 2]
+
+
+    img_bg = np.zeros((split_h, img_w, 3), 'uint8')
+    img_bg[:, :, 0] = img_b[:, :, 0]
+    img_bg[:, :, 1] = align_bg(img_b, img_g)
+    # b_h_roll, b_w_roll = align_bg(img_b, img_g)
+
+    # plot_fig(img_bgr)
+    # figManager = plt.get_current_fig_manager()
+    # figManager.window.showMaximized()
+
+    # plot_BGR(img_b, img_g, img_r, img_bgr)
+    # figManager = plt.get_current_fig_manager()
+    # figManager.window.showMaximized()
+
+    # plot_fig(img_bgr_raw)
+    # figManager = plt.get_current_fig_manager()
+    # figManager.window.showMaximized()
+
+    plt.show()
