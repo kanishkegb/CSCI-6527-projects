@@ -8,6 +8,7 @@ import pdb
 def plot_BGR(img_b, img_g, img_r, img_bgr):
 
     # cv2 uses BGR, but plt uses RGB
+    plt.figure()
     plt.subplot(141)
     plt.imshow(cv2.cvtColor(img_b, cv2.COLOR_BGR2RGB))
     plt.title('Blue')
@@ -32,6 +33,7 @@ def plot_BGR(img_b, img_g, img_r, img_bgr):
 
 
 def plot_fig(img):
+    plt.figure()
     plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
     plt.title('Image')
     plt.xticks([]), plt.yticks([])
@@ -98,30 +100,33 @@ img_full = cv2.imread('images/01597v.jpg', 0)
 t, b, l, r = detect_edges(img_full)
 img = img_full[t:b, l:r]
 
-plt.imshow(img)
-plt.show()
+# plt.imshow(img)
+# plt.show()
 
 # pdb.set_trace()
 
-# img_h, img_w = img.shape
-# split_h = int(img_h / 3)
-#
-# img_b = np.zeros((split_h, img_w, 3), 'uint8')
-# img_g = np.zeros((split_h, img_w, 3), 'uint8')
-# img_r = np.zeros((split_h, img_w, 3), 'uint8')
-#
-# img_b[:, :, 0] = img[:split_h, :]
-# img_g[:, :, 1] = img[split_h:split_h * 2, :]
-# img_r[:, :, 2] = img[split_h * 2:split_h * 3, :]
-#
-# img_bgr = np.zeros((split_h, img_w, 3), 'uint8')
-# img_bgr[:, :, 0] = img_b[:, :, 0]
-# img_bgr[:, :, 1] = img_g[:, :, 1]
-# img_bgr[:, :, 2] = img_r[:, :, 2]
-#
-# plot_BGR(img_b, img_g, img_r, img_bgr)
-# # plot_fig(img)
-#
-# figManager = plt.get_current_fig_manager()
-# figManager.window.showMaximized()
-# plt.show()
+img_h, img_w = img.shape
+split_h = int(img_h / 3)
+
+img_b = np.zeros((split_h, img_w, 3), 'uint8')
+img_g = np.zeros((split_h, img_w, 3), 'uint8')
+img_r = np.zeros((split_h, img_w, 3), 'uint8')
+
+img_b[:, :, 0] = img[:split_h, :]
+img_g[:, :, 1] = img[split_h:split_h * 2, :]
+img_r[:, :, 2] = img[split_h * 2:split_h * 3, :]
+
+img_bgr = np.zeros((split_h, img_w, 3), 'uint8')
+img_bgr[:, :, 0] = img_b[:, :, 0]
+img_bgr[:, :, 1] = img_g[:, :, 1]
+img_bgr[:, :, 2] = img_r[:, :, 2]
+
+plot_BGR(img_b, img_g, img_r, img_bgr)
+figManager = plt.get_current_fig_manager()
+figManager.window.showMaximized()
+
+plot_fig(img_bgr)
+figManager = plt.get_current_fig_manager()
+figManager.window.showMaximized()
+
+plt.show()
