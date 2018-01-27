@@ -1,45 +1,23 @@
 from matplotlib import pyplot as plt
+from fig_plots import plot_bgr, plot_fig
 
 import cv2
 import numpy as np
 import pdb
 
 
-def plot_BGR(img_b, img_g, img_r, img_bgr):
-
-    # cv2 uses BGR, but plt uses RGB
-    plt.figure()
-    plt.subplot(141)
-    plt.imshow(cv2.cvtColor(img_b, cv2.COLOR_BGR2RGB))
-    plt.title('Blue')
-    plt.xticks([]), plt.yticks([])
-
-    plt.subplot(142)
-    plt.imshow(cv2.cvtColor(img_g, cv2.COLOR_BGR2RGB))
-    plt.title('Green')
-    plt.xticks([]), plt.yticks([])
-
-    plt.subplot(143)
-    plt.imshow(cv2.cvtColor(img_r, cv2.COLOR_BGR2RGB))
-    plt.title('Red')
-    plt.xticks([]), plt.yticks([])
-
-    plt.subplot(144)
-    plt.imshow(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
-    plt.title('BGR')
-    plt.xticks([]), plt.yticks([])
-
-    return
-
-
-def plot_fig(img):
-    plt.figure()
-    plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    plt.title('Image')
-    plt.xticks([]), plt.yticks([])
-
-
 def detect_edges(img):
+    '''
+    Detects the border of the image based on the difference of the white outer
+    space and the black border.
+
+    Args:
+        img: array - image to be cropped
+
+    Returns:
+        t, b: int - top and bottom crop limits
+        l, r: int - left and right crop limits
+    '''
 
     h, w = img.shape
 
@@ -94,6 +72,16 @@ def detect_edges(img):
 
 
 def align_bg(img_b, img_g):
+    '''
+    Aligns green channel to blue channel
+
+    Args:
+        img_b: array - image of blue channel
+        img_g: array - image of green channel
+
+    Returns:
+        im2_w_roll: array - aligned green channel
+    '''
 
     h, w = img_b.shape[:2]
     t = int(h / 3)
@@ -115,6 +103,16 @@ def align_bg(img_b, img_g):
 
 
 def align_br(img_b, img_r):
+    '''
+    Aligns red channel to blue channel
+
+    Args:
+        img_b: array - image of blue channel
+        img_r: array - image of red channel
+
+    Returns:
+        im2_w_roll: array - aligned red channel
+    '''
 
     h, w = img_b.shape[:2]
 
@@ -133,6 +131,18 @@ def align_br(img_b, img_r):
 
 
 def find_min_err(im1, im2, roll_lim=50):
+    '''
+    Calculates the number of pixels to be rolled along each axis such that the
+    error between the compared figures is minimum
+
+    Args:
+        im1, im2: arrays - images to be compared
+        roll_lim: int - roll window [default = 50 px]
+
+    Returns:
+        h_roll: int - pixels need to be rolled along height of the image
+        w_roll:  int - pixels need to be rolled along width of the image
+    '''
 
     min_err = 1e100
     min_h_roll, min_w_roll = 0, 0
@@ -187,7 +197,7 @@ if __name__ == '__main__':
     # figManager = plt.get_current_fig_manager()
     # figManager.window.showMaximized()
 
-    # plot_BGR(img_b, img_g, img_r, img_bgr)
+    # plot_bgr(img_b, img_g, img_r, img_bgr)
     # figManager = plt.get_current_fig_manager()
     # figManager.window.showMaximized()
 
