@@ -120,8 +120,40 @@ def align_bg(img_b, img_g):
 
     im2_h_roll = np.roll(img_g, min_h_roll, axis=0)
     im2_w_roll = np.roll(im2_h_roll, min_w_roll, axis=1)
-    pdb.set_trace()
+
     return im2_w_roll[:, :, 1]
+
+
+def align_br(img_b, img_r):
+
+    h, w = img_b.shape[:2]
+    # t = int(h / 3)
+    # b = int(h * 2 / 3)
+    # l = int(w / 3)
+    # r = int(w * 2 / 3)
+    t, b = 50, -50
+    l, r = 50, -50
+
+    im1 = img_b[t:b, l:r, 0]
+    im2 = img_r[t:b, l:r, 1]
+
+    min_err = 1e100
+    min_h_roll, min_w_roll = 0, 0
+    for h_roll in range(-100, 100, 5):
+        im2_h_roll = np.roll(im2, h_roll, axis=0)
+        for w_roll in  range(-100, 100, 5):
+            im2_w_roll = np.roll(im2_h_roll, w_roll, axis=1)
+            err = np.sum(pow(im1 - im2_w_roll, 2))
+            # print(err)
+            if err < min_err:
+                min_err = err
+                min_h_roll, min_w_roll = h_roll, w_roll
+
+    im2_h_roll = np.roll(img_r, min_h_roll, axis=0)
+    im2_w_roll = np.roll(im2_h_roll, min_w_roll, axis=1)
+    # pdb.set_trace()
+
+    return im2_w_roll[:, :, 2]
 
 
 if __name__ == '__main__':
@@ -153,12 +185,13 @@ if __name__ == '__main__':
     img_bgr_raw[:, :, 2] = img_r[:, :, 2]
 
 
-    img_bg = np.zeros((split_h, img_w, 3), 'uint8')
-    img_bg[:, :, 0] = img_b[:, :, 0]
-    img_bg[:, :, 1] = align_bg(img_b, img_g)
+    img_bgr = np.zeros((split_h, img_w, 3), 'uint8')
+    img_bgr[:, :, 0] = img_b[:, :, 0]
+    img_bgr[:, :, 1] = align_bg(img_b, img_g)
+    img_bgr[:, :, 2] = align_br(img_b, img_r)
     # b_h_roll, b_w_roll = align_bg(img_b, img_g)
 
-    # plot_fig(img_bgr)
+    plot_fig(img_bgr)
     # figManager = plt.get_current_fig_manager()
     # figManager.window.showMaximized()
 
