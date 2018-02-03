@@ -1,7 +1,7 @@
 from matplotlib import pyplot as plt
 
 import cv2
-import numpy as np
+# import numpy as np
 
 
 def plot_bgr(img_b, img_g, img_r, img_bgr):
@@ -36,6 +36,28 @@ def plot_bgr(img_b, img_g, img_r, img_bgr):
     plt.subplot(144)
     plt.imshow(cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB))
     plt.title('BGR')
+    plt.xticks([]), plt.yticks([])
+
+    return
+
+
+def plot_aligned(img, roll_g, roll_r):
+    '''
+    Plot single image in BGR colorspace
+
+    Args:
+        img: array - image to be plotted
+        roll_g: int tuple - pixels rolled for aligning green channel
+        roll_r: int tuple - pixels rolled for aligning red channel
+
+    Returns:
+        None
+    '''
+
+    plt.figure()
+    plt.imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    plt.title('Green: ({}, {})  Red: ({}, {})'.format(roll_g[0],
+              roll_g[1], roll_r[0], roll_r[1]))
     plt.xticks([]), plt.yticks([])
 
     return

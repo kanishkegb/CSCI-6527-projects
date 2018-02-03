@@ -1,9 +1,6 @@
-from matplotlib import pyplot as plt
-from numpy.linalg import norm
-
 import cv2
 import numpy as np
-import pdb
+# import pdb
 
 
 def detect_edges(img):
@@ -87,20 +84,18 @@ def align_im(img1, img2, roll_lim=15):
     min_err = np.inf
     min_h, min_w = 0, 0
     for h in range(-roll_lim, roll_lim, 1):
-        for w in  range(-roll_lim, roll_lim, 1):
+        for w in range(-roll_lim, roll_lim, 1):
             im2 = np.roll(img2, (h, w), (0, 1))
             err = calc_error(img1, im2)
-            # pdb.set_trace()
 
             if err < min_err:
                 min_err = err
                 min_h, min_w = h, w
 
-    # pdb.set_trace()
     print('Roll: h {}, w {}'.format(min_h, min_w))
     aligned_im2 = np.roll(img2, (min_h, min_w), (0, 1))
 
-    return aligned_im2
+    return aligned_im2, (min_h, min_w)
 
 
 def calc_error(img1, img2):
@@ -123,7 +118,6 @@ def calc_error(img1, img2):
     im2 = img2[t:-t, l:-l]
 
     err = np.sum(np.power(im1 / np.max(im1) - im2 / np.max(im2), 2))
-    # err = np.dot( im1 / norm(im1), im2 / norm(im2))
 
     return err
 
@@ -131,7 +125,7 @@ def calc_error(img1, img2):
 def digitize_layer(img, threshold=30):
 
     h, w = img.shape
-    img_01 = np.zeros((split_h, img_w), 'uint8')
+    img_01 = np.zeros((h, w), 'uint8')
     for i in range(h):
         for j in range(w):
             if img[i, j] > threshold:
@@ -140,10 +134,10 @@ def digitize_layer(img, threshold=30):
     return img_01
 
 
-
 def digitize_image(img_b, img_g, img_r):
 
-    img_01 = np.zeros((split_h, img_w, 3), 'uint8')
+    h, w = img_b.shape
+    img_01 = np.zeros((h, w, 3), 'uint8')
     img_01[:, :, 0] = digitize_layer(img_b[:, :, 0])
     img_01[:, :, 1] = digitize_layer(img_g[:, :, 1])
     img_01[:, :, 2] = digitize_layer(img_r[:, :, 2])

@@ -1,8 +1,6 @@
-from matplotlib import pyplot as plt
-
 import cv2
 import numpy as np
-import pdb
+# import pdb
 
 
 img = cv2.imread('images/lakeandballoon.jpg', 1)
