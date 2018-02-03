@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
         description=(
-            'Reads and plots the GPS data logs.'))
+            'Aligns images using exhaustive search.'))
     parser.add_argument(
         'file',
         nargs='?',

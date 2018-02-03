@@ -114,6 +114,5 @@ def plot_1x2(img1, img2, img1_title='', img2_title=''):
     plt.xticks([]), plt.yticks([])
     plt.subplot(122), plot_bgr(img2), plt.title(img2_title)
     plt.xticks([]), plt.yticks([])
-    plt.show()
 
     return

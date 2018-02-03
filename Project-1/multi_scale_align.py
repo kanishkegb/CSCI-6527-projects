@@ -1,10 +1,11 @@
-from align_funcs import detect_edges
+from image_read_funcs import split_image_to_bgr
 from matplotlib import pyplot as plt
 from plot_funcs import plot_1x2
 
+import argparse
 import cv2
 import numpy as np
-import pdb
+import sys
 
 
 def blur_and_pyr_up(img, kernel, max_width):
@@ -38,24 +39,35 @@ def blur_and_pyr_up(img, kernel, max_width):
 
 def multi_scale_align(img):
 
-
-
-
-
-if __name__ == '__main__':
-
-    img = cv2.imread('images/lakeandballoon.jpg', 1)
-    # edges = detect_edges(img)
-    #
-    # plt.imshow(edges)
-    #
-    # plt.xticks([]), plt.yticks([])
-    # plt.show()
-
     kernel = np.ones((3, 3), np.float32) / 9
     max_width = 500
     pyr_up = blur_and_pyr_up(img, kernel, max_width)
 
-    # plot_1x2(img, pyr_up, 'Original', 'Resized Image')
-    # cv2.imshow("Image", pyr_up)
-    # key = cv2.waitKey(0) & 0xFF
+    return pyr_up
+
+
+if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser(
+        description=(
+            'Aligns images using multi-scale method.'))
+    parser.add_argument(
+        'file',
+        nargs='?',
+        default='images/01164v.jpg',
+        help='specify the path to gps log, default=images/01164v.jpg')
+
+    args = parser.parse_args()
+    if len(sys.argv) == 1:
+        # parser.print_help()
+        # print('\nno image specfied, using default image.. \n')
+        args.file = 'images/01164v.jpg'
+
+    img_name = args.file
+    img = cv2.imread(img_name, 0)
+    img_bgr = split_image_to_bgr(img)
+
+    algnd_img = multi_scale_align(img_bgr)
+
+    plot_1x2(img_bgr, algnd_img, 'Original', 'Resized Image')
+    plt.show()
