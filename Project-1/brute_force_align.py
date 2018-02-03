@@ -3,8 +3,10 @@ from image_read_funcs import split_image_to_bgr
 from matplotlib import pyplot as plt
 from plot_funcs import plot_aligned
 
+import argparse
 import cv2
 import numpy as np
+import sys
 
 
 def brute_force_align(img):
@@ -34,7 +36,24 @@ def brute_force_align(img):
 
 if __name__ == '__main__':
 
-    img = cv2.imread('images/01164v.jpg', 0)
+    parser = argparse.ArgumentParser(
+        description=(
+            'Reads and plots the GPS data logs.'))
+    parser.add_argument(
+        'file',
+        nargs='?',
+        default='images/01164v.jpg',
+        help='specify the path to gps log, default=images/01164v.jpg')
+
+    args = parser.parse_args()
+    if len(sys.argv) == 1:
+        parser.print_help()
+        args.file = 'images/01164v.jpg'
+        print('\nno image specfied, using default image.. \n')
+
+    img_name = args.file
+
+    img = cv2.imread(img_name, 0)
     img_algnd, roll_g, roll_r = brute_force_align(img)
 
     # img_algnd[:, :, 1] = np.roll(img_bgr[:, :, 1], (-22, 6), (0, 1))

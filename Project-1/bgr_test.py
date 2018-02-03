@@ -2,6 +2,10 @@ import cv2
 import numpy as np
 # import pdb
 
+'''
+Simple test to make sure opencv is working as intended. This should just open
+the image and display in correct color space
+'''
 
 img = cv2.imread('images/lakeandballoon.jpg', 1)
 

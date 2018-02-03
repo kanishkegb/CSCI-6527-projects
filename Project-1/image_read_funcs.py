@@ -1,7 +1,5 @@
 from align_funcs import detect_edges
-from matplotlib import pyplot as plt
 
-import cv2
 import numpy as np
 
 
