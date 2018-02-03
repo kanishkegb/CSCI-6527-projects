@@ -1,20 +1,10 @@
+from align_funcs import detect_edges
 from matplotlib import pyplot as plt
 from plot_funcs import plot_1x2
 
 import cv2
 import numpy as np
 import pdb
-
-
-def detect_edges(img):
-
-    sobel_vertical = np.array([[1, 2, 1], [0, 0, 0], [-1, -2, -1]], np.float32)
-    vertical = cv2.filter2D(img, -1, sobel_vertical)
-
-    sobel_horizontal = sobel_vertical.T
-    horizontal = cv2.filter2D(img, -1, sobel_horizontal)
-
-    return vertical + horizontal
 
 
 def blur_and_pyr_up(img, kernel, max_width):
@@ -44,6 +34,12 @@ def blur_and_pyr_up(img, kernel, max_width):
         plot_1x2(img, blurred, 'Original', 'Resized Image')
 
     return blurred
+
+
+def multi_scale_align(img):
+
+
+
 
 
 if __name__ == '__main__':
