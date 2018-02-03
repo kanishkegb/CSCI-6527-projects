@@ -20,11 +20,18 @@ def detect_edges(img):
 
     black_threshold = 50
     counter_threshold = w * 0.8
-    t, b = 0, 0
-    l, r = 0, 0
 
     t, l = find_top_left(img, black_threshold, counter_threshold)
     b, r = find_bottom_right(img, black_threshold, counter_threshold)
+
+    # in case boundaries are not detected in a reasonable range, do not
+    # crop anything
+    t_lim, b_lim = 0.1 * h, 0.9 * h
+    l_lim, r_lim = 0.1 * w, 0.9 * w
+    t = 0 if t > t_lim else t
+    b = h if b < b_lim else b
+    l = 0 if l > l_lim else l
+    r = w if r < r_lim else r
 
     return t, b, l, r
 
@@ -101,6 +108,7 @@ def find_bottom_right(img, black_threshold, counter_threshold):
             break
 
     return b, r
+
 
 def align_im(img1, img2, roll_lim=15):
     '''
