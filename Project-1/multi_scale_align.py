@@ -8,24 +8,25 @@ import numpy as np
 import sys
 
 
-def blur_and_pyr_up(img, kernel, max_width):
+def blur_and_pyr(img, kernel, level, max_level):
     '''
     Blurrs and moves and image up in the image pyramid
 
     Args:
         img: array - image to be blurred
         filter: array - filter used to blur
-        max_width: int - maximum width of the image in the upper most level
-                         of the pyramid
+        level: int - cuurent level in the image pyramid
+        max_level: int - maximum level of the pyramid
 
     Returns:
         blurred: array - blurred image
     '''
 
-    h, w, c = img.shape
-    max_levels = int(w / max_width)
-    print('Image width: {} \t Max allowed width: {}'.format(w, max_width))
-    print('Max levels in the image pyramid: {}'.format(max_levels))
+    if level == max_level:
+        img_algnd, roll_g, roll_r = brute_force_align(img)
+
+        return img_algnd, roll_g, roll_r
+
 
     blurred = img
     for i in range(max_levels):
@@ -37,13 +38,31 @@ def blur_and_pyr_up(img, kernel, max_width):
     return blurred
 
 
-def multi_scale_align(img):
+def multi_scale_align(img, max_width=200):
+    '''
+    Blurrs and moves and image up in the image pyramid
+
+    Args:
+        img: array - image to be aligned
+        max_width: int - maximum width of the image in the upper most level
+                         of the pyramid
+
+    Returns:
+        img_algnd: array - aligned image
+    '''
+
+    h, w, c = img.shape
+    max_level = int(w / max_width)
+
+    print('Image width: {} \t Max allowed width: {}'.format(w, max_width))
+    print('Max levels in the image pyramid: {}'.format(max_level))
 
     kernel = np.ones((3, 3), np.float32) / 9
-    max_width = 500
-    pyr_up = blur_and_pyr_up(img, kernel, max_width)
 
-    return pyr_up
+    level = 0
+    img_algnd = blur_and_pyr(img, kernel, level, max_level)
+
+    return img_algnd
 
 
 if __name__ == '__main__':
