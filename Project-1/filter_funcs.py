@@ -1,5 +1,5 @@
 from matplotlib import pyplot as plt
-from plot_funcs import plot_fig
+from plot_funcs import plot_1x2
 
 import cv2
 import numpy as np
@@ -17,12 +17,36 @@ def detect_edges(img):
     return vertical + horizontal
 
 
+def blur_and_pyr_up(img, kernel):
+    '''
+    Blurrs and moves and image up in the image pyramid
+
+    Args:
+        img: array - image to be blurred
+        filter: array - filter used to blur
+
+    Returns:
+        blurred: array - blurred image
+    '''
+
+    blurred = cv2.filter2D(img, -1, kernel)
+
+    return blurred
+
+
 if __name__ == '__main__':
 
-    img = cv2.imread('images/lakeandballoon.jpg', 0)
-    edges = detect_edges(img)
+    img = cv2.imread('images/lakeandballoon.jpg', 1)
+    # edges = detect_edges(img)
+    #
+    # plt.imshow(edges)
+    #
+    # plt.xticks([]), plt.yticks([])
+    # plt.show()
 
-    plt.imshow(edges)
+    kernel = np.ones((3, 3), np.float32) / 9
+    pyr_up = blur_and_pyr_up(img, kernel)
 
-    plt.xticks([]), plt.yticks([])
-    plt.show()
+    plot_1x2(img, pyr_up, 'Original', 'Resized Image')
+    # cv2.imshow("Image", pyr_up)
+    # key = cv2.waitKey(0) & 0xFF

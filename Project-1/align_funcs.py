@@ -28,6 +28,7 @@ def detect_edges(img):
     # crop anything
     t_lim, b_lim = 0.1 * h, 0.9 * h
     l_lim, r_lim = 0.1 * w, 0.9 * w
+
     t = 0 if t > t_lim else t
     b = h if b < b_lim else b
     l = 0 if l > l_lim else l
@@ -43,7 +44,7 @@ def find_top_left(img, black_threshold, counter_threshold):
     Args:
         img: array - image with the border
         black_threshold: int - black cutoff value
-        counter_threshold: int - number of continous pixels to be checked
+        counter_threshold: int - number of continuous pixels to be checked
                                  for black color
     '''
 

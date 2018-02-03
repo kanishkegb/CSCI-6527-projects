@@ -80,3 +80,24 @@ def plot_fig(img):
     plt.xticks([]), plt.yticks([])
 
     return
+
+
+def plot_1x2(img1, img2, img1_title='', img2_title=''):
+    '''
+    Plots two image in 1x2 array
+
+    Args:
+        img1, img2: arrays - images to be plotted
+
+    Returns:
+        None
+    '''
+
+    plt.figure()
+    plt.subplot(121), plt.imshow(cv2.cvtColor(img1, cv2.COLOR_BGR2RGB)), plt.title(img1_title)
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(122), plt.imshow(cv2.cvtColor(img2, cv2.COLOR_BGR2RGB)), plt.title(img2_title)
+    plt.xticks([]), plt.yticks([])
+    plt.show()
+
+    return
