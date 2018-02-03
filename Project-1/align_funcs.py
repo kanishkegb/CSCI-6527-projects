@@ -23,6 +23,25 @@ def detect_edges(img):
     t, b = 0, 0
     l, r = 0, 0
 
+    t, l = find_top_left(img, black_threshold, counter_threshold)
+    b, r = find_bottom_right(img, black_threshold, counter_threshold)
+
+    return t, b, l, r
+
+
+def find_top_left(img, black_threshold, counter_threshold):
+    '''
+    Finds top left corner of the border
+
+    Args:
+        img: array - image with the border
+        black_threshold: int - black cutoff value
+        counter_threshold: int - number of continous pixels to be checked
+                                 for black color
+    '''
+
+    h, w = img.shape
+
     tl_found = 0
     for i in range(h):
         t_counter = 0
@@ -43,6 +62,22 @@ def detect_edges(img):
 
         if tl_found:
             break
+
+    return t, l
+
+
+def find_bottom_right(img, black_threshold, counter_threshold):
+    '''
+    Finds bottom right corner of the border
+
+    Args:
+        img: array - image with the border
+        black_threshold: int - black cutoff value
+        counter_threshold: int - number of continous pixels to be checked
+                                 for black color
+    '''
+
+    h, w = img.shape
 
     br_found = 0
     for i in range(h - 1, 0, -1):
@@ -65,8 +100,7 @@ def detect_edges(img):
         if br_found:
             break
 
-    return t, b, l, r
-
+    return b, r
 
 def align_im(img1, img2, roll_lim=15):
     '''
