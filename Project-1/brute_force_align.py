@@ -58,13 +58,9 @@ if __name__ == '__main__':
     img_bgr = split_image_to_bgr(img)
     img_algnd, roll_g, roll_r = brute_force_align(img_bgr)
 
-    # img_algnd[:, :, 1] = np.roll(img_bgr[:, :, 1], (-22, 6), (0, 1))
-    # img_algnd[:, :, 2] = np.roll(img_bgr[:, :, 2], (-43, 32), (0, 1))
-
     # plot_fig(img_bgr_raw)
     # plot_fig(img_algnd)
     plot_aligned(img_algnd, roll_g, roll_r)
-    # plot_aligned(img_algnd, (-22, 6), (-43, 32))
     # figManager = plt.get_current_fig_manager()
     # figManager.window.showMaximized()
 

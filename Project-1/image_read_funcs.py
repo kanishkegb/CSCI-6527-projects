@@ -1,4 +1,4 @@
-from align_funcs import detect_edges
+from crop_funcs import detect_edges
 
 import numpy as np
 
