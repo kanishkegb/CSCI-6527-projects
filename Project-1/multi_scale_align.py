@@ -78,18 +78,21 @@ def blur_and_pyr(img, kernel, level, max_level):
     '''
 
     if level == max_level:
-        img_algnd, roll_g, roll_r = brute_force_align(img)
+        img_algnd, roll_g, roll_r = brute_force_align(img, 20)
+        # plot_1x2(img, img_algnd, 'Original', 'Resized Image')
+
         return roll_g, roll_r
 
     resized = cv2.resize(img, (0, 0), fx=0.5, fy=0.5)
     blurred = cv2.filter2D(resized, -1, kernel)
-    coarse_g, coarse_r = blur_and_pyr(blurred, kernel, level + 1, max_level)
+    # blurred = resized
+    up_g, up_r = blur_and_pyr(blurred, kernel, level + 1, max_level)
     # plot_1x2(img, blurred, 'Original', 'Resized Image')
 
     # fine tune based on the coarse tuning
-    img_coarse, coarse_g, coarse_r = roll_gr_from_coarse(img, coarse_g, coarse_r)
-    img_algnd, fine_g, fine_r = brute_force_align(img, 2)
-    print('processed level {}'.format(level))
+    img_coarse, coarse_g, coarse_r = roll_gr_from_coarse(img, up_g, up_r)
+    img_algnd, fine_g, fine_r = brute_force_align(img_coarse, 2)
+    # import pdb; pdb.set_trace()
 
     roll_g = (coarse_g[0] + fine_g[0], coarse_g[1] + fine_g[1])
     roll_r = (coarse_r[0] + fine_r[0], coarse_r[1] + fine_r[1])
@@ -111,7 +114,7 @@ def multi_scale_align(img, max_width=200):
     '''
 
     h, w, c = img.shape
-    max_level = int(np.log2(w / max_width))
+    max_level = int(np.log2(w / max_width)) + 1
     # import pdb; pdb.set_trace()
 
     print('Image width: {} \t Max allowed width: {}'.format(w, max_width))
@@ -152,5 +155,5 @@ if __name__ == '__main__':
 
     algnd_img = multi_scale_align(img_bgr)
 
-    plot_1x2(img_bgr, algnd_img, 'Original', 'Resized Image')
+    plot_1x2(img_bgr, algnd_img, 'Original', 'Aligned Image')
     plt.show()
