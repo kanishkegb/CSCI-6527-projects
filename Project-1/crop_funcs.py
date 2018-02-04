@@ -15,12 +15,12 @@ def crop_aligned_image(img, roll_g, roll_r):
     '''
     h, w, c = img.shape
 
-    crop_outer = 0.05
+    crop_outer = 0.04
     t, b, l, r = crop_limits(h, w, crop_outer)
     t_adj, b_adj = crop_limits_gr(roll_g[0], roll_r[0])
     l_adj, r_adj = crop_limits_gr(roll_g[1], roll_r[1])
 
-    cropped = img[t:b, l:r, :]
+    cropped = img[t + t_adj:b + b_adj, l + l_adj:r + r_adj, :]
 
     return cropped
 
@@ -66,7 +66,7 @@ def crop_limits(h, w, p):
         t, b, l, r: ints - top, bottom, left, right pixel values
     '''
 
-    crop_percent = 0.05
+    crop_percent = p
 
     t = int(crop_percent * h)
     b = int((1 - crop_percent) * h)

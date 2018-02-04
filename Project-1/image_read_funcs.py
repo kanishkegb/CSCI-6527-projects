@@ -1,4 +1,5 @@
 from crop_funcs import detect_edges
+from matplotlib import pyplot as plt
 
 import numpy as np
 
@@ -18,6 +19,12 @@ def split_image_to_bgr(img_full):
     # crop the original image to remove outer white border
     t, b, l, r = detect_edges(img_full)
     img = img_full[t:b, l:r]
+
+    plt.figure()
+    plt.subplot(121), plt.imshow(img_full, cmap='gray'), plt.title('Before')
+    plt.xticks([]), plt.yticks([])
+    plt.subplot(122), plt.imshow(img, cmap='gray'), plt.title('Cropped')
+    plt.xticks([]), plt.yticks([])
 
     img_h, img_w = img.shape
     split_h = int(img_h / 3)

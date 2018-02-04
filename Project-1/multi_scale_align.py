@@ -1,4 +1,4 @@
-from brute_force_align import brute_force_align
+from single_scale_align import brute_force_align
 from crop_funcs import crop_aligned_image
 from image_read_funcs import split_image_to_bgr
 from matplotlib import pyplot as plt

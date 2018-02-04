@@ -2,7 +2,7 @@ from align_funcs import align_im
 from crop_funcs import crop_aligned_image
 from image_read_funcs import split_image_to_bgr
 from matplotlib import pyplot as plt
-from plot_funcs import plot_aligned
+from plot_funcs import plot_aligned, plot_fig, plot_bgr_and_combined, plot_1x2
 
 import argparse
 import cv2
@@ -62,8 +62,12 @@ if __name__ == '__main__':
     cropped_image = crop_aligned_image(img_algnd, roll_g, roll_r)
     # plot_fig(img_bgr_raw)
     # plot_fig(img_algnd)
-    plot_aligned(cropped_image, roll_g, roll_r)
     # figManager = plt.get_current_fig_manager()
     # figManager.window.showMaximized()
 
+    plot_bgr_and_combined(img_bgr[:, :, 0], img_bgr[:, :, 1],
+                          img_bgr[:, :, 2], img_algnd)
+
+    plot_1x2(img_algnd, cropped_image, 'Before', 'Cropped')
+    plot_aligned(cropped_image, roll_g, roll_r)
     plt.show()

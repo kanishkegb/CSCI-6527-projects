@@ -19,17 +19,17 @@ def plot_bgr_and_combined(img_b, img_g, img_r, img_bgr):
     # cv2 uses BGR, but plt uses RGB
     plt.figure()
     plt.subplot(141)
-    plot_bgr(img_b)
+    plt.imshow(img_b, cmap='gray')
     plt.title('Blue')
     plt.xticks([]), plt.yticks([])
 
     plt.subplot(142)
-    plot_bgr(img_g)
+    plt.imshow(img_g, cmap='gray')
     plt.title('Green')
     plt.xticks([]), plt.yticks([])
 
     plt.subplot(143)
-    plot_bgr(img_r)
+    plt.imshow(img_r, cmap='gray')
     plt.title('Red')
     plt.xticks([]), plt.yticks([])
 
