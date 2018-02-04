@@ -31,11 +31,11 @@ This algorithm aligns an image based on exhaustive search on a specified pixel w
 6. Repeat same steps as 4-5 except now the it's the red layer, not green layer.
 7. Crop the aligned image you get at step 6 to avoid artifacts near the borders due to extra/missing layers
 <p align="center">
-<img src=aligned_images/report/4-aligned-cropped.png alt="aligned cropped" width="300">
+<img src=aligned_images/report/4-aligned-cropped.png alt="aligned cropped" width="800">
 </p>
 8. Display the aligned image.
 <p align="center">
-<img src=aligned_images/report/5-final.png alt="results" width="300">
+<img src=aligned_images/report/5-final.png alt="results" width="600">
 </p>
 
 [](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#41-cropping-outer-border)
