@@ -16,17 +16,15 @@ The objective of this project is to automatically generate the color image from 
 This algorithm aligns an image based on exhaustive search on a specified pixel window. Below shows the basic steps in this algorithm.
 1. Read the raw image.
 <p align="center">
-<img src=aligned_images/report/1-raw.jpg alt="raw image" width="80">
+<img src=aligned_images/report/1-raw.jpg alt="raw image" width="200">
 </p>
-
 2. Detect the outside black border and crop the image to remove the white space outside the border.
 <p align="center">
-<img src=aligned_images/report/2-cropped.png alt="borders cropped" width="300">
+<img src=aligned_images/report/2-cropped.png alt="borders cropped" width="600">
 </p>
-
 3. Split the image into blue, green and red layers based on its size
 <p align="center">
-<img src=aligned_images/report/3-split.png alt="split" width="300">
+<img src=aligned_images/report/3-split.png alt="split" width="600">
 </p>
 4. Move the green layer over blue layer ±15 pixels in both vertical and horizontal directions and calculate the sum of square differences (SSD).
 5. Two layers are considered to be coincide when the SSD values is minimum. Shift the green layer in vertical and/or horizontal directions with the pixel displacement when the minimum SSD was calculated.
@@ -36,6 +34,7 @@ This algorithm aligns an image based on exhaustive search on a specified pixel w
 <img src=aligned_images/report/4-aligned-cropped.png alt="aligned cropped" width="300">
 </p>
 8. Display the aligned image.
+<p align="center">
 <img src=aligned_images/report/5-final.png alt="results" width="300">
 </p>
 
