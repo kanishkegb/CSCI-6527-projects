@@ -1,3 +1,81 @@
+def crop_aligned_image(img, roll_g, roll_r):
+    '''
+    Crop the aligned image consideing the outside border and the amount of
+    pixels the G and R layers were rolled to align them.
+
+    Args:
+        img: array - aligned image
+        roll_g: tuple - amount of pixels the G layer was rolled to align it
+                with B layer
+        roll_r: tuple - amount of pixels the R layer was rolled to align it
+                with B layer
+
+    Returns:
+        cropped: array - cropped image
+    '''
+    h, w, c = img.shape
+
+    crop_outer = 0.05
+    t, b, l, r = crop_limits(h, w, crop_outer)
+    t_adj, b_adj = crop_limits_gr(roll_g[0], roll_r[0])
+    l_adj, r_adj = crop_limits_gr(roll_g[1], roll_r[1])
+
+    cropped = img[t:b, l:r, :]
+
+    return cropped
+
+
+def crop_limits_gr(g, r):
+    '''
+    Finds the crop limits based on the pixels of G and R layer were rolled in
+    order to align them with B layer.
+
+    Args:
+        g: int - number of pixels G layer was rolled
+        r: int - number of pixels R layer was rolled
+
+    Returns:
+        crop1, crop2: ints - amount of pixels to be cropped on top/left side
+                      and on bottom/right side
+    '''
+
+    crop1, crop2 = 0, 0
+    if g > 0 and r > 0:
+        crop1 = max([g, r])
+    elif g < 0 and r < 0:
+        crop2 = min([g, r])
+    elif g > 0 and r < 0:
+        crop1, crop2 = g, r
+    elif g < 0 and r > 0:
+        crop1, crop2 = r, g
+
+    return crop1, crop2
+
+
+def crop_limits(h, w, p):
+    '''
+    Calculates crop limis in pixels so that an image can be cropped by a
+    percent along all borders
+
+    Args:
+        h: int - height of the image
+        w: int - width of the image
+        p: double - percentage (between 0.0 - 1.0) crop limits
+
+    Returns:
+        t, b, l, r: ints - top, bottom, left, right pixel values
+    '''
+
+    crop_percent = 0.05
+
+    t = int(crop_percent * h)
+    b = int((1 - crop_percent) * h)
+    l = int(crop_percent * w)
+    r = int((1 - crop_percent) * w)
+
+    return t, b, l, r
+
+
 def detect_edges(img):
     '''
     Detects the border of the image based on the difference of the white outer
@@ -23,6 +101,7 @@ def detect_edges(img):
     # crop anything
     t_lim, b_lim = 0.1 * h, 0.9 * h
     l_lim, r_lim = 0.1 * w, 0.9 * w
+    t_lim, b_lim, l_lim, r_lim = crop_limits(h, w, 0.1)
 
     t = 0 if t > t_lim else t
     b = h if b < b_lim else b

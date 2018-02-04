@@ -1,4 +1,5 @@
 from brute_force_align import brute_force_align
+from crop_funcs import crop_aligned_image
 from image_read_funcs import split_image_to_bgr
 from matplotlib import pyplot as plt
 from plot_funcs import plot_1x2
@@ -129,7 +130,7 @@ def multi_scale_align(img, max_width=200):
     print('\nGreen: h {}, w {}'.format(roll_g[0], roll_g[1]))
     print('Red: h {}, w {}\n'.format(roll_r[0], roll_r[1]))
 
-    return img_algnd
+    return img_algnd, roll_g, roll_r
 
 
 if __name__ == '__main__':
@@ -153,7 +154,9 @@ if __name__ == '__main__':
     img = cv2.imread(img_name, 0)
     img_bgr = split_image_to_bgr(img)
 
-    algnd_img = multi_scale_align(img_bgr)
+    algnd_img, roll_g, roll_r = multi_scale_align(img_bgr)
+    cropped_image = crop_aligned_image(algnd_img, roll_g, roll_r)
 
     plot_1x2(img_bgr, algnd_img, 'Original', 'Aligned Image')
+    plot_1x2(algnd_img, cropped_image, 'Aligned Image', 'Cropped Image')
     plt.show()

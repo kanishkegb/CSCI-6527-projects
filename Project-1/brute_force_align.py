@@ -1,4 +1,5 @@
 from align_funcs import align_im
+from crop_funcs import crop_aligned_image
 from image_read_funcs import split_image_to_bgr
 from matplotlib import pyplot as plt
 from plot_funcs import plot_aligned
@@ -58,9 +59,10 @@ if __name__ == '__main__':
     img_bgr = split_image_to_bgr(img)
     img_algnd, roll_g, roll_r = brute_force_align(img_bgr)
 
+    cropped_image = crop_aligned_image(img_algnd, roll_g, roll_r)
     # plot_fig(img_bgr_raw)
     # plot_fig(img_algnd)
-    plot_aligned(img_algnd, roll_g, roll_r)
+    plot_aligned(cropped_image, roll_g, roll_r)
     # figManager = plt.get_current_fig_manager()
     # figManager.window.showMaximized()
 
