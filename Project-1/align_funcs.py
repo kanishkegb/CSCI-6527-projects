@@ -135,7 +135,7 @@ def align_im(img1, img2, roll_lim=15):
                 min_err = err
                 min_h, min_w = h, w
 
-    print('Roll: h {}, w {}'.format(min_h, min_w))
+    # print('Roll: h {}, w {}'.format(min_h, min_w))
     aligned_im2 = np.roll(img2, (min_h, min_w), (0, 1))
 
     return aligned_im2, (min_h, min_w)

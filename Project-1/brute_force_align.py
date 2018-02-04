@@ -9,7 +9,7 @@ import numpy as np
 import sys
 
 
-def brute_force_align(img):
+def brute_force_align(img, roll_lim=15):
     '''
     Aligns each layer of an image in BGR colorspace with the B layer
 
@@ -22,14 +22,15 @@ def brute_force_align(img):
         roll_r: int tuple - pixels rolled for aligning red channel
     '''
 
-    img_bgr = split_image_to_bgr(img)
-
-    h, w, c = img_bgr.shape
+    h, w, c = img.shape
 
     img_algnd = np.zeros((h, w, 3), 'uint8')
-    img_algnd[:, :, 0] = img_bgr[:, :, 0]
-    img_algnd[:, :, 1], roll_g = align_im(img_bgr[:, :, 0], img_bgr[:, :, 1])
-    img_algnd[:, :, 2], roll_r = align_im(img_bgr[:, :, 0], img_bgr[:, :, 2])
+    img_algnd[:, :, 0] = img[:, :, 0]
+    img_algnd[:, :, 1], roll_g = align_im(img[:, :, 0], img[:, :, 1], roll_lim)
+    img_algnd[:, :, 2], roll_r = align_im(img[:, :, 0], img[:, :, 2], roll_lim)
+
+    print('\nGreen: h {}, w {}'.format(roll_g[0], roll_g[1]))
+    print('Red: h {}, w {}'.format(roll_r[0], roll_r[1]))
 
     return img_algnd, roll_g, roll_r
 
@@ -54,7 +55,8 @@ if __name__ == '__main__':
     img_name = args.file
 
     img = cv2.imread(img_name, 0)
-    img_algnd, roll_g, roll_r = brute_force_align(img)
+    img_bgr = split_image_to_bgr(img)
+    img_algnd, roll_g, roll_r = brute_force_align(img_bgr)
 
     # img_algnd[:, :, 1] = np.roll(img_bgr[:, :, 1], (-22, 6), (0, 1))
     # img_algnd[:, :, 2] = np.roll(img_bgr[:, :, 2], (-43, 32), (0, 1))
