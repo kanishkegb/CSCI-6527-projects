@@ -20,7 +20,7 @@ This algorithm aligns an image based on exhaustive search on a specified pixel w
 <img src=aligned_images/report/1-raw.jpg alt="raw image" width="170">
 </p>
 
-2. Detect the outside black border and crop the image to remove the white space outside the border.
+2. Detect the outside black border and crop the image to remove the white space outside the border (details in [Section 4](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#4-cropping-outer-border)).
 <p align="center">
 <img src=aligned_images/report/2-cropped.png alt="borders cropped" width="600">
 </p>
@@ -36,7 +36,7 @@ This algorithm aligns an image based on exhaustive search on a specified pixel w
 
 6. Repeat same steps as 4-5 except now the it's the red layer, not green layer.
 
-7. Crop the aligned image you get at step 6 to avoid artifacts near the borders due to extra/missing layers
+7. Crop the aligned image you get at step 6 to avoid artifacts near the borders due to extra/missing layers (details in [Section 5](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#5-cropping-aligned-image))
 <p align="center">
 <img src=aligned_images/report/4-aligned-cropped.png alt="aligned cropped" width="800">
 </p>
@@ -46,8 +46,8 @@ This algorithm aligns an image based on exhaustive search on a specified pixel w
 <img src=aligned_images/report/5-final.png alt="results" width="600">
 </p>
 
-[](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#41-cropping-outer-border)
 
+### Code
 Running the code:
 
 ```
