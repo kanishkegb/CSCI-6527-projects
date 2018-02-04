@@ -18,8 +18,8 @@ def brute_force_align(img, roll_lim=15):
 
     Returns:
         img_algnd: aray - aligned image
-        roll_g: int tuple - pixels rolled for aligning green channel
-        roll_r: int tuple - pixels rolled for aligning red channel
+        roll_g: int tuple - pixels rolled for aligning G channel
+        roll_r: int tuple - pixels rolled for aligning R channel
     '''
 
     h, w, c = img.shape

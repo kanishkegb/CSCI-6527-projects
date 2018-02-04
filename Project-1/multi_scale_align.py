@@ -10,6 +10,22 @@ import sys
 
 
 def roll_gr_from_coarse(img, coarse_g, coarse_r):
+    '''
+    Rolls G and R layers of a BGR image by the coarse roll values calculated
+    at the upper level of the image pyramid
+
+    Args:
+        img: aray - image to be rolled
+        coarse_g: int tuple - pixel roll for aligning G channel calculated
+                  at upper level of image pyramid
+        coarse_r: int tuple - pixel roll for aligning R channel calculated
+                  at upper level of image
+
+    Returns:
+        img_coarse: aray - aligned image
+        coarse_g: int tuple - pixels rolled for aligning G channel
+        coarse_r: int tuple - pixels rolled for aligning R channel
+    '''
 
     # scale coarse roll values from previous level
     coarse_g = (coarse_g[0] * 2, coarse_g[1] * 2)
@@ -26,6 +42,16 @@ def roll_gr_from_coarse(img, coarse_g, coarse_r):
 
 
 def roll_gr(img, roll_g, roll_r):
+    '''
+    Rolls G and R layers of a BGR image by the given roll values
+
+    Args:
+        img: aray - image to be rolled
+        coarse_g: int tuple - pixel roll for aligning G channel calculated
+                  at upper level of image pyramid
+        coarse_r: int tuple - pixel roll for aligning R channel calculated
+                  at upper level of image pyramid
+    '''
 
     h, w, c = img.shape
 
