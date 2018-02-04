@@ -17,7 +17,7 @@ This algorithm aligns an image based on exhaustive search on a specified pixel w
 
 1. Read the raw image.
 <p align="center">
-<img src=aligned_images/report/1-raw.jpg alt="raw image" width="200">
+<img src=aligned_images/report/1-raw.jpg alt="raw image" width="170">
 </p>
 
 2. Detect the outside black border and crop the image to remove the white space outside the border.
@@ -27,7 +27,7 @@ This algorithm aligns an image based on exhaustive search on a specified pixel w
 
 3. Split the image into blue, green and red layers based on its size
 <p align="center">
-<img src=aligned_images/report/3-split.png alt="split" width="600">
+<img src=aligned_images/report/3-split.png alt="split" width="800">
 </p>
 
 4. Move the green layer over blue layer ±15 pixels in both vertical and horizontal directions and calculate the sum of square differences (SSD).
