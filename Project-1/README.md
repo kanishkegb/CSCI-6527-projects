@@ -1,5 +1,13 @@
 # Project 1: Image Alignment and Color Compositing
 
+## Contents
+1. [Introduction](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#1-introduction)
+2. [Single-Scale Aligning](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#)
+3. [Multi-Scale Aligning](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#2-single-scale-aligning)
+4. [Cropping Outer Border](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#4-cropping-outer-border)
+5. [Cropping Aligned Image](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#5-cropping-aligned-image)
+6. [Contrast Adjustment](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#6-contrast-adjustment)
+
 ## 1. Introduction
 This project aims to automatically align and composite images from [ Prokudin-Gorskii photo collection](http://www.loc.gov/exhibits/empire/gorskii.html). This photo collection was created by the Russian photographer [Sergei Mikhailovich Prokudin-Gorskii](http://en.wikipedia.org/wiki/Prokudin-Gorskii) (1863-1944) by photos he captured throughout the Russia during a time where the color cameras were not even invented.
 
@@ -129,7 +137,7 @@ These regions are cropped out as follows. First, since we know how much the each
 
 ## 6. Contrast Adjustment
 
-There is no guarantee that the filters used by the photographer to generate each color layer is accurate. The contrast may differ based on the filter. This was done simply by mapping the lowest value and the highest value of each layer of image to 0 and 255 respectively. 
+There is no guarantee that the filters used by the photographer to generate each color layer is accurate. The contrast may differ based on the filter. This was done simply by mapping the lowest value and the highest value of each layer of image to 0 and 255 respectively.   
 
 <p align="center">
 <img src=aligned_images/report/11-contrast.png alt="results" width="800">
