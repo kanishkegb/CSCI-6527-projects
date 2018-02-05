@@ -46,7 +46,7 @@ This algorithm aligns an image based on exhaustive search on a specified pixel w
 <img src=aligned_images/report/5-final.png alt="results" width="450">
 </p>
 
-This method works effectively on relatively smaller images. When the number of pixels in an image increases, the processing time significantly.
+This method works effectively on relatively smaller images. When the number of pixels in an image increases, the processing time increases significantly.
 
 ### Code
 Running the code: python single_scale_align.py path\to\image.
@@ -56,7 +56,7 @@ python single_scale_align.py images\01725u.jpg
 ```
 
 ## 3. Multi-Scale Aligning
-This algorithm aligns a larger image based on multi-scale alignment. Below shows the basic steps in this algorithm.
+This algorithm aligns a larger image based on multi-scale alignment. Below are the basic steps in this algorithm.
 
 1. Read the raw image.
 
@@ -107,7 +107,10 @@ For cropping out these white area, simply the difference between white and back 
 <p align="center">
 <img src=aligned_images/report/12-border-detect.png alt="results" width="500">
 
-Above plot shows how the values vary throughout one row of pixels in an image. At the left and right corners, the white pixels with values closer to 255 can be observed. The sudden drop when moving inwards of the plot shows the black border. Based on this sudden drop of pixel values, the outer border is recognized and everything outside was cropped.
+Above plot shows how the values vary throughout one row of pixels in an image. At the left and right corners, the white pixels with values closer to 255 can be observed. The sudden drop when moving inwards of the plot shows the black border. Based on this sudden drop of pixel values, the outer border is recognized and everything outside was cropped. The below figure shows the difference between the original image and the image with cropped outside border.
+
+<p align="center">
+<img src=aligned_images/report/7-cropped.png alt="borders cropped" width="800">
 
 ## 5. Cropping Aligned Image
 
