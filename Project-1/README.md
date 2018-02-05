@@ -1,5 +1,8 @@
 # Project 1: Image Alignment and Color Compositing
 
+Course: CSCI 6527 - Introduction to Computer Vision, Spring 2018
+Name: Kanishke Gamagedara
+
 ## Contents
 1. [Introduction](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#1-introduction)
 2. [Single-Scale Aligning](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#)
