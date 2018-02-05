@@ -36,25 +36,57 @@ This algorithm aligns an image based on exhaustive search on a specified pixel w
 
 6. Repeat same steps as 4-5 except now the it's the red layer, not green layer.
 
-7. Crop the aligned image you get at step 6 to avoid artifacts near the borders due to extra/missing layers (details in [Section 5](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#5-cropping-aligned-image))
+7. Crop the aligned image you get at step 6 to avoid artifacts near the borders due to extra/missing layers (details in [Section 5](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#5-cropping-aligned-image)).
 <p align="center">
 <img src=aligned_images/report/4-aligned-cropped.png alt="aligned cropped" width="800">
 </p>
 
-8. Display the aligned image.
+8. Adjust the contrast of each layer (details in [Section 6](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#6-contrast-adjustment)).
 <p align="center">
 <img src=aligned_images/report/5-final.png alt="results" width="450">
 </p>
 
+This method works effectively on relatively smaller images. When the number of pixels in an image increases, the processing time significantly.
 
 ### Code
-Running the code:
-
+Running the code: python single_scale_align.py path\to\image.
+For example:
 ```
 python single_scale_align.py images\01725u.jpg
 ```
 
 ## 3. Multi-Scale Aligning
+This algorithm aligns a larger image based on multi-scale alignment. Below shows the basic steps in this algorithm.
+
+1. Read the raw image.
+
+2. Detect the outside black border and crop the image to remove the white space outside the border (details in [Section 4](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#4-cropping-outer-border)).
+<p align="center">
+<img src=aligned_images/report/7-cropped.png alt="borders cropped" width="600">
+</p>
+
+3. Split the image into blue, green and red layers based on its size
+
+4. Resize the image by half and blur it using an averaging filter
+
+5. Repeat above step 4 until resized image width is smaller than 100 pixels
+
+6. Repeat steps 4 to 6 in single-scale alignment algorithm.
+
+7. Based on the alignment performed in above step 6, check for minimum SSD value in image intermediate resized image in the step 5 by varying each green and red layers vertically and horizontally in ±2 pixels.
+<p align="center">
+<img src=aligned_images/report/8-aligned.png alt="aligned" width="800">
+</p>
+
+7. Crop the aligned image you get at step 6 to avoid artifacts near the borders due to extra/missing layers (details in [Section 5](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#5-cropping-aligned-image)).
+<p align="center">
+<img src=aligned_images/report/9-aligned-cropped.png alt="aligned cropped" width="800">
+</p>
+
+8. Adjust the contrast of each layer (details in [Section 6](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#6-contrast-adjustment)).
+<p align="center">
+<img src=aligned_images/report/10-contrast.png alt="results" width="800">
+</p>
 
 ## 4. Cropping Outer Border
 ## 5. Cropping Aligned Image
