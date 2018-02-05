@@ -29,8 +29,8 @@ This shows a set of selected images aligned from low resolution original images 
 <img src=10.png alt="image" width="300">
 </p>
 
-<p align="left">
+<!-- <p align="left">
 <img src=11.png alt="image" width="300">\
-</p>
+</p> -->
 
 [back to contents](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#contents)

@@ -7,7 +7,7 @@
 4. [Cropping Outer Border](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#4-cropping-outer-border)
 5. [Cropping Aligned Image](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#5-cropping-aligned-image)
 6. [Contrast Adjustment](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#6-contrast-adjustment)
-7. Gallery: [single-scale low resolution](), [multi-scale high resolution](),
+7. Gallery: [single-scale low resolution](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1/aligned_images/multi_scale#high-resolution-gallery), [multi-scale high resolution](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1/aligned_images/single_scale#low-resolution-gallery)
 
 ## 1. Introduction
 This project aims to automatically align and composite images from [ Prokudin-Gorskii photo collection](http://www.loc.gov/exhibits/empire/gorskii.html). This photo collection was created by the Russian photographer [Sergei Mikhailovich Prokudin-Gorskii](http://en.wikipedia.org/wiki/Prokudin-Gorskii) (1863-1944) by photos he captured throughout the Russia during a time where the color cameras were not even invented.
@@ -158,3 +158,7 @@ There is no guarantee that the filters used by the photographer to generate each
 ## 7. Gallery
 
 To reduce the loading time, image gallery is moved here. Please use the below links to access the gallery.
+  * [single-scale low resolution](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1/aligned_images/multi_scale#high-resolution-gallery),
+  * [multi-scale high resolution](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1/aligned_images/single_scale#low-resolution-gallery)
+
+[back to contents](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#contents)
