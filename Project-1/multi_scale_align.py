@@ -3,7 +3,7 @@ from contrast_funcs import adjust_contrast
 from crop_funcs import crop_aligned_image
 from image_read_funcs import split_image_to_bgr
 from matplotlib import pyplot as plt
-from plot_funcs import plot_1x2
+from plot_funcs import plot_1x2, plot_fig
 
 import argparse
 import cv2
@@ -82,6 +82,8 @@ def blur_and_pyr(img, kernel, level, max_level):
     if level == max_level:
         img_algnd, roll_g, roll_r = brute_force_align(img, 20)
         # plot_1x2(img, img_algnd, 'Original', 'Resized Image')
+        plot_fig(img_algnd)
+        plt.show()
 
         return roll_g, roll_r
 
@@ -159,8 +161,8 @@ if __name__ == '__main__':
     cropped_image = crop_aligned_image(algnd_img, roll_g, roll_r)
     contr_image = adjust_contrast(cropped_image)
 
-    plot_1x2(img_bgr, algnd_img, 'Original', 'Aligned Image')
-    plot_1x2(algnd_img, cropped_image, 'Aligned Image', 'Cropped Image')
-    plot_1x2(cropped_image, contr_image, 'Before', 'Contrast Fixed')
+    # plot_1x2(img_bgr, algnd_img, 'Original', 'Aligned Image')
+    # plot_1x2(algnd_img, cropped_image, 'Aligned Image', 'Cropped Image')
+    # plot_1x2(cropped_image, contr_image, 'Before', 'Contrast Fixed')
 
     plt.show()
