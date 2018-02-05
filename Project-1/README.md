@@ -106,14 +106,31 @@ For cropping out these white area, simply the difference between white and back 
 
 <p align="center">
 <img src=aligned_images/report/12-border-detect.png alt="results" width="500">
+</p>
 
-Above plot shows how the values vary throughout one row of pixels in an image. At the left and right corners, the white pixels with values closer to 255 can be observed. The sudden drop when moving inwards of the plot shows the black border. Based on this sudden drop of pixel values, the outer border is recognized and everything outside was cropped. The below figure shows the difference between the original image and the image with cropped outside border.
+Above plot shows how the values vary throughout one row of pixels in an image. At the left and right corners, the white pixels with values closer to 255 can be observed. The sudden drop when moving inwards of the plot shows the black border. Based on this sudden drop of pixel values, the outer border is recognized and everything outside was cropped.
+
+The below figure shows the difference between the original image and the image with cropped outside border.
 
 <p align="center">
 <img src=aligned_images/report/7-cropped.png alt="borders cropped" width="800">
+</p>
 
 ## 5. Cropping Aligned Image
 
+The aligning processes described above include shifting layers vertically or horizontally with respect to another layer. This may result in some pixel windows near border with one or two layers missing in that region. These regions can be observed in the left image below where green and yellow regions visible on top and bottom.
+
+These regions are cropped out as follows. First, since we know how much the each layer is moved around in order to align, that region is removed from the figure. Then, two percent of the image is cropped in all borders to remove the black border from the image.
+
+<p align="center">
+<img src=aligned_images/report/10-aligned-cropped.png alt="aligned cropped" width="800">
+</p>
 
 
 ## 6. Contrast Adjustment
+
+There is no guarantee that the filters used by the photographer to generate each color layer is accurate. The contrast may differ based on the filter. This was done simply by mapping the lowest value and the highest value of each layer of image to 0 and 255 respectively. 
+
+<p align="center">
+<img src=aligned_images/report/11-contrast.png alt="results" width="800">
+</p>
