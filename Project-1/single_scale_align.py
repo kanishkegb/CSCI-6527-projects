@@ -1,4 +1,5 @@
 from align_funcs import align_im
+from contrast_funcs import adjust_contrast
 from crop_funcs import crop_aligned_image
 from image_read_funcs import split_image_to_bgr
 from matplotlib import pyplot as plt
@@ -70,4 +71,8 @@ if __name__ == '__main__':
 
     plot_1x2(img_algnd, cropped_image, 'Before', 'Cropped')
     plot_aligned(cropped_image, roll_g, roll_r)
+
+    contr_image = adjust_contrast(cropped_image)
+    plot_1x2(cropped_image, contr_image, 'Before', 'Contrast Fixed')
+
     plt.show()

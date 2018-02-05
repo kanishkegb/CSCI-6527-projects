@@ -1,4 +1,5 @@
 from single_scale_align import brute_force_align
+from contrast_funcs import adjust_contrast
 from crop_funcs import crop_aligned_image
 from image_read_funcs import split_image_to_bgr
 from matplotlib import pyplot as plt
@@ -156,7 +157,10 @@ if __name__ == '__main__':
 
     algnd_img, roll_g, roll_r = multi_scale_align(img_bgr)
     cropped_image = crop_aligned_image(algnd_img, roll_g, roll_r)
+    contr_image = adjust_contrast(cropped_image)
 
     plot_1x2(img_bgr, algnd_img, 'Original', 'Aligned Image')
     plot_1x2(algnd_img, cropped_image, 'Aligned Image', 'Cropped Image')
+    plot_1x2(cropped_image, contr_image, 'Before', 'Contrast Fixed')
+
     plt.show()

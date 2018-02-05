@@ -43,7 +43,7 @@ This algorithm aligns an image based on exhaustive search on a specified pixel w
 
 8. Display the aligned image.
 <p align="center">
-<img src=aligned_images/report/5-final.png alt="results" width="600">
+<img src=aligned_images/report/5-final.png alt="results" width="450">
 </p>
 
 
