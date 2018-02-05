@@ -69,7 +69,7 @@ This algorithm aligns a larger image based on multi-scale alignment. Below shows
 
 4. Resize the image by half and blur it using an averaging filter
 
-5. Repeat above step 4 until resized image width is smaller than 100 pixels. Below figure shows the blurred and resized image that was used for exhaustive search. This has low resolution which makes is faster to align the layers. 
+5. Repeat above step 4 until resized image width is smaller than 100 pixels. Below figure shows the blurred and resized image that was used for exhaustive search. This has low resolution which makes is faster to align the layers.
 <p align="center">
 <img src=aligned_images/report/8-blurred.png alt="aligned cropped" width="300">
 </p>
@@ -78,15 +78,15 @@ This algorithm aligns a larger image based on multi-scale alignment. Below shows
 
 7. Based on the alignment performed in above step 6, check for minimum SSD value in image intermediate resized image in the step 5 by varying each green and red layers vertically and horizontally in ±2 pixels.
 <p align="center">
-<img src=aligned_images/report/8-aligned.png alt="aligned" width="800">
+<img src=aligned_images/report/9-aligned.png alt="aligned" width="800">
 </p>
 
-7. Crop the aligned image you get at step 6 to avoid artifacts near the borders due to extra/missing layers (details in [Section 5](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#5-cropping-aligned-image)).
+8. Crop the aligned image you get at step 6 to avoid artifacts near the borders due to extra/missing layers (details in [Section 5](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#5-cropping-aligned-image)).
 <p align="center">
 <img src=aligned_images/report/10-aligned-cropped.png alt="aligned cropped" width="800">
 </p>
 
-8. Adjust the contrast of each layer (details in [Section 6](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#6-contrast-adjustment)).
+9. Adjust the contrast of each layer (details in [Section 6](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#6-contrast-adjustment)).
 <p align="center">
 <img src=aligned_images/report/11-contrast.png alt="results" width="800">
 </p>
