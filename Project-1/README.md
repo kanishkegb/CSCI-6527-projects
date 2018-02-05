@@ -69,7 +69,7 @@ This algorithm aligns a larger image based on multi-scale alignment. Below shows
 
 4. Resize the image by half and blur it using an averaging filter
 
-5. Repeat above step 4 until resized image width is smaller than 100 pixels. Below figure shows
+5. Repeat above step 4 until resized image width is smaller than 100 pixels. Below figure shows the blurred and resized image that was used for exhaustive search. This has low resolution which makes is faster to align the layers. 
 <p align="center">
 <img src=aligned_images/report/8-blurred.png alt="aligned cropped" width="300">
 </p>
