@@ -103,5 +103,7 @@ For cropping out these white area, simply the difference between white and back 
 
 
 
+
+
 ## 5. Cropping Aligned Image
 ## 6. Contrast Adjustment
