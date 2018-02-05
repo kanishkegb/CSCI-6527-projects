@@ -62,7 +62,7 @@ This algorithm aligns a larger image based on multi-scale alignment. Below shows
 
 2. Detect the outside black border and crop the image to remove the white space outside the border (details in [Section 4](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#4-cropping-outer-border)).
 <p align="center">
-<img src=aligned_images/report/7-cropped.png alt="borders cropped" width="600">
+<img src=aligned_images/report/7-cropped.png alt="borders cropped" width="800">
 </p>
 
 3. Split the image into blue, green and red layers based on its size
@@ -88,6 +88,20 @@ This algorithm aligns a larger image based on multi-scale alignment. Below shows
 <img src=aligned_images/report/10-contrast.png alt="results" width="800">
 </p>
 
+### Code
+Running the code: python multi_scale_align.py path\to\image.
+For example:
+```
+python multi_scale_align.py images\00458u.jpg
+```
+
 ## 4. Cropping Outer Border
+
+Each figure has a black outer border. But, outside that border, a white space can be observed. The procedure is that the image is split into blue, green, and red channels based on the height of the image. If this outer white space is not removed while doing that, splitting will not accurately slice the image into the three layers. Therefore, if everything outside the black outer border is cropped out, the algorithms will generate a better result.
+
+For cropping out these white area, simply the difference between white and back pixels is used. The white pixels have value closer to 255 while the black pixels have a value closer to 0. Since the black may have slight variances on its brightness, a threshold value of 40 is used for detecting black. That is, if the pixel value is lower than threshold value, it is considered black.
+
+
+
 ## 5. Cropping Aligned Image
 ## 6. Contrast Adjustment
