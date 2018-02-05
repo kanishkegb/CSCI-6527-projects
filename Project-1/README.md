@@ -101,9 +101,10 @@ Each figure has a black outer border. But, outside that border, a white space ca
 
 For cropping out these white area, simply the difference between white and back pixels is used. The white pixels have value closer to 255 while the black pixels have a value closer to 0. Since the black may have slight variances on its brightness, a threshold value of 40 is used for detecting black. That is, if the pixel value is lower than threshold value, it is considered black.
 
+<p align="center">
+<img src=aligned_images/report/11-border-detect.png alt="results" width="500">
 
-
-
+Above plot shows how the values vary throughout one row of pixels in an image. At the left and right corners, the white pixels with values closer to 255 can be observed. The sudden drop when moving inwards of the plot shows the black border. Based on this sudden drop of pixel values, the outer border is recognized and everything outside was cropped.
 
 ## 5. Cropping Aligned Image
 ## 6. Contrast Adjustment
