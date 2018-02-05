@@ -13,6 +13,7 @@ def crop_aligned_image(img, roll_g, roll_r):
     Returns:
         cropped: array - cropped image
     '''
+    
     h, w, c = img.shape
 
     crop_outer = 0.04

@@ -3,7 +3,7 @@ from contrast_funcs import adjust_contrast
 from crop_funcs import crop_aligned_image
 from image_read_funcs import split_image_to_bgr
 from matplotlib import pyplot as plt
-from plot_funcs import plot_1x2, plot_fig
+from plot_funcs import plot_fig
 
 import argparse
 import cv2
@@ -32,7 +32,6 @@ def roll_gr_from_coarse(img, coarse_g, coarse_r):
     # scale coarse roll values from previous level
     coarse_g = (coarse_g[0] * 2, coarse_g[1] * 2)
     coarse_r = (coarse_r[0] * 2, coarse_r[1] * 2)
-    # import pdb; pdb.set_trace()
 
     h, w, c = img.shape
     img_coarse = np.zeros((h, w, 3), 'uint8')
@@ -81,22 +80,15 @@ def blur_and_pyr(img, kernel, level, max_level):
 
     if level == max_level:
         img_algnd, roll_g, roll_r = brute_force_align(img, 20)
-        # plot_1x2(img, img_algnd, 'Original', 'Resized Image')
-        # plot_fig(img_algnd)
-        # plt.show()
-
         return roll_g, roll_r
 
     resized = cv2.resize(img, (0, 0), fx=0.5, fy=0.5)
     blurred = cv2.filter2D(resized, -1, kernel)
-    # blurred = resized
     up_g, up_r = blur_and_pyr(blurred, kernel, level + 1, max_level)
-    # plot_1x2(img, blurred, 'Original', 'Resized Image')
 
     # fine tune based on the coarse tuning
     img_coarse, coarse_g, coarse_r = roll_gr_from_coarse(img, up_g, up_r)
     img_algnd, fine_g, fine_r = brute_force_align(img_coarse, 2)
-    # import pdb; pdb.set_trace()
 
     roll_g = (coarse_g[0] + fine_g[0], coarse_g[1] + fine_g[1])
     roll_r = (coarse_r[0] + fine_r[0], coarse_r[1] + fine_r[1])
@@ -119,7 +111,6 @@ def multi_scale_align(img, max_width=200):
 
     h, w, c = img.shape
     max_level = int(np.log2(w / max_width)) + 1
-    # import pdb; pdb.set_trace()
 
     print('Image width: {} \t Max allowed width: {}'.format(w, max_width))
     print('Max levels in the image pyramid: {}'.format(max_level))
@@ -162,21 +153,12 @@ if __name__ == '__main__':
     contr_image = adjust_contrast(cropped_image)
 
     h, w, c = contr_image.shape
-    # import pdb; pdb.set_trace()
-
     plot_fig(contr_image, '', (h, w))
-
-    # plot_1x2(img_bgr, algnd_img, 'Original', 'Aligned Image')
-    # plot_1x2(algnd_img, cropped_image, 'Aligned Image', 'Cropped Image')
-    # plot_1x2(cropped_image, contr_image, 'Before', 'Contrast Fixed')
-
-    # figManager = plt.get_current_fig_manager()
-    # figManager.window.showMaximized()
     plt.tight_layout()
 
     # use for saving images
-    j = int(input('Figure number ? '))
-    plt.savefig('aligned_images/multi_scale/{}.png'.format(int(j)),
-                transparent=True)
+    # j = int(input('Figure number ? '))
+    # plt.savefig('aligned_images/multi_scale/{}.png'.format(int(j)),
+    #             transparent=True)
 
     plt.show()

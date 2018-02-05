@@ -1,7 +1,6 @@
 from matplotlib import pyplot as plt
 
 import cv2
-# import numpy as np
 
 
 def plot_bgr_and_combined(img_b, img_g, img_r, img_bgr):
