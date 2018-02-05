@@ -3,7 +3,7 @@
 This repository includes all the codes/reports for the projects done for the class CSCI-6527.
 
 ## List of Projects:
-* [Project 1: Image Alignment and Color Compositing](https://kanishkegb.github.io/CSCI-6527-projects/Project-1)
+* [Project 1: Image Alignment and Color Compositing](https://kanishkegb.github.io/CSCI-6527-projects/Project-1/README)
 
 ## Setting-up the repository
 
