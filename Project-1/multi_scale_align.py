@@ -161,7 +161,10 @@ if __name__ == '__main__':
     cropped_image = crop_aligned_image(algnd_img, roll_g, roll_r)
     contr_image = adjust_contrast(cropped_image)
 
-    plot_fig(contr_image, '')
+    h, w, c = contr_image.shape
+    # import pdb; pdb.set_trace()
+
+    plot_fig(contr_image, '', (h, w))
 
     # plot_1x2(img_bgr, algnd_img, 'Original', 'Aligned Image')
     # plot_1x2(algnd_img, cropped_image, 'Aligned Image', 'Cropped Image')
@@ -170,4 +173,10 @@ if __name__ == '__main__':
     # figManager = plt.get_current_fig_manager()
     # figManager.window.showMaximized()
     plt.tight_layout()
+
+    # use for saving images
+    j = int(input('Figure number ? '))
+    plt.savefig('aligned_images/multi_scale/{}.png'.format(int(j)),
+                transparent=True)
+
     plt.show()
