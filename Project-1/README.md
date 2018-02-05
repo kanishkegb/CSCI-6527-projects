@@ -19,6 +19,8 @@ He came up with a simple idea to produce color photos: record three exposures of
 
 The objective of this project is to automatically generate the color image from the glass plate image with three separate layers.
 
+[back to contents](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#contents)
+
 ## 2. Single-Scale Aligning
 
 This algorithm aligns an image based on exhaustive search on a specified pixel window. Below shows the basic steps in this algorithm.
@@ -63,6 +65,8 @@ For example:
 python single_scale_align.py images\01725u.jpg
 ```
 
+[back to contents](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#contents)
+
 ## 3. Multi-Scale Aligning
 This algorithm aligns a larger image based on multi-scale alignment. Below are the basic steps in this algorithm.
 
@@ -106,6 +110,8 @@ For example:
 python multi_scale_align.py images\00458u.jpg
 ```
 
+[back to contents](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#contents)
+
 ## 4. Cropping Outer Border
 
 Each figure has a black outer border. But, outside that border, a white space can be observed. The procedure is that the image is split into blue, green, and red channels based on the height of the image. If this outer white space is not removed while doing that, splitting will not accurately slice the image into the three layers. Therefore, if everything outside the black outer border is cropped out, the algorithms will generate a better result.
@@ -124,6 +130,8 @@ The below figure shows the difference between the original image and the image w
 <img src=aligned_images/report/7-cropped.png alt="borders cropped" width="800">
 </p>
 
+[back to contents](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#contents)
+
 ## 5. Cropping Aligned Image
 
 The aligning processes described above include shifting layers vertically or horizontally with respect to another layer. This may result in some pixel windows near border with one or two layers missing in that region. These regions can be observed in the left image below where green and yellow regions visible on top and bottom.
@@ -134,6 +142,7 @@ These regions are cropped out as follows. First, since we know how much the each
 <img src=aligned_images/report/10-aligned-cropped.png alt="aligned cropped" width="800">
 </p>
 
+[back to contents](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#contents)
 
 ## 6. Contrast Adjustment
 
@@ -142,3 +151,5 @@ There is no guarantee that the filters used by the photographer to generate each
 <p align="center">
 <img src=aligned_images/report/11-contrast.png alt="results" width="800">
 </p>
+
+[back to contents](https://github.com/kanishkegb/CSCI-6527-projects/tree/master/Project-1#contents)
