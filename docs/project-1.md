@@ -19,7 +19,7 @@ This project aims to automatically align and composite images from [ Prokudin-Go
 He came up with a simple idea to produce color photos: record three exposures of every scene onto a glass plate using a red, a green, and a blue filter and then project the monochrome pictures with correctly colored light to reproduce the color image. Below image shows the scanned version of one of his glass plates.
 
 <p align="center">
-<img src=../Project-1/aligned_images/report/1-raw.jpg alt="raw image" width="200">
+<img src=https://github.com/kanishkegb/CSCI-6527-projects/blob/master/Project-1/aligned_images/report/1-raw.jpg alt="raw image" width="200">
 </p>
 
 The objective of this project is to automatically generate the color image from the glass plate image with three separate layers.
