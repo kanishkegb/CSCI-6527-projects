@@ -66,13 +66,19 @@ if __name__ == '__main__':
     # figManager = plt.get_current_fig_manager()
     # figManager.window.showMaximized()
 
-    plot_bgr_and_combined(img_bgr[:, :, 0], img_bgr[:, :, 1],
-                          img_bgr[:, :, 2], img_algnd)
+    # plot_bgr_and_combined(img_bgr[:, :, 0], img_bgr[:, :, 1],
+    #                       img_bgr[:, :, 2], img_algnd)
 
-    plot_1x2(img_algnd, cropped_image, 'Before', 'Cropped')
-    plot_aligned(cropped_image, roll_g, roll_r)
+    # plot_1x2(img_algnd, cropped_image, 'Before', 'Cropped')
+    # plot_aligned(cropped_image, roll_g, roll_r)
 
     contr_image = adjust_contrast(cropped_image)
-    plot_1x2(cropped_image, contr_image, 'Before', 'Contrast Fixed')
+    # plot_1x2(cropped_image, contr_image, 'Before', 'Contrast Fixed')
+    plot_fig(contr_image, '')
+    plt.tight_layout()
+
+    # use for saving images
+    # j = int(input('Figure number ? '))
+    # plt.savefig('aligned_images/single_scale/{}.png'.format(int(j)), transparent=True)
 
     plt.show()

@@ -79,7 +79,7 @@ def plot_bgr(img):
     return
 
 
-def plot_fig(img):
+def plot_fig(img, img_title='Image'):
     '''
     Plot single image in BGR colorspace
 
@@ -92,7 +92,7 @@ def plot_fig(img):
 
     plt.figure()
     plot_bgr(img)
-    plt.title('Image')
+    plt.title(img_title)
     plt.xticks([]), plt.yticks([])
 
     return

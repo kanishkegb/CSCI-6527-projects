@@ -82,8 +82,8 @@ def blur_and_pyr(img, kernel, level, max_level):
     if level == max_level:
         img_algnd, roll_g, roll_r = brute_force_align(img, 20)
         # plot_1x2(img, img_algnd, 'Original', 'Resized Image')
-        plot_fig(img_algnd)
-        plt.show()
+        # plot_fig(img_algnd)
+        # plt.show()
 
         return roll_g, roll_r
 
@@ -161,8 +161,13 @@ if __name__ == '__main__':
     cropped_image = crop_aligned_image(algnd_img, roll_g, roll_r)
     contr_image = adjust_contrast(cropped_image)
 
+    plot_fig(contr_image, '')
+
     # plot_1x2(img_bgr, algnd_img, 'Original', 'Aligned Image')
     # plot_1x2(algnd_img, cropped_image, 'Aligned Image', 'Cropped Image')
     # plot_1x2(cropped_image, contr_image, 'Before', 'Contrast Fixed')
 
+    # figManager = plt.get_current_fig_manager()
+    # figManager.window.showMaximized()
+    plt.tight_layout()
     plt.show()
