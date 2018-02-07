@@ -1,5 +1,6 @@
 [back to contents](p1#contents)
 
+<a name="low"></a>
 ## Low Resolution Gallery
 
 This shows a set of selected images aligned from low resolution original images through single-scale aligning process.

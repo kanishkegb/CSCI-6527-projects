@@ -1,5 +1,6 @@
 [back to contents](p1#contents)
 
+<a name="high"></a>
 ## High Resolution Gallery
 
 This shows a set of selected images aligned from high resolution original images through multi-scale aligning process.
