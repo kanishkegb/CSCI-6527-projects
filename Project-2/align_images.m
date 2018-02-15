@@ -1,4 +1,5 @@
 function [im1, im2] = align_images(im1, im2)
+
 % Aligns im1 and im2 (translation, scale, rotation) after getting two pairs
 % of points from the user.  In the output of im1 and im2, the two pairs of
 % points will have approximately the same coordinates.
@@ -7,16 +8,27 @@ function [im1, im2] = align_images(im1, im2)
 [h1, w1, b1] = size(im1);
 [h2, w2, b2] = size(im2);
 
-% displays image
-figure(1), hold off, imagesc(im1), axis image, colormap gray
+% debugging
+x1 = [611.1519, 743.3950]';
+y1 = [288.6473, 374.2164]';
 
-% gets two points from the user
-disp('Select two points from each image define rotation, scale, translation')
-[x1, y1] = ginput(2);
+x2 = [304.2944, 443.0607]';
+y2 = [348.6121, 334.2570]';
+
 cx1 = mean(x1); cy1 = mean(y1);
-figure(1), hold off, imagesc(im2), axis image
-[x2, y2] = ginput(2);
 cx2 = mean(x2); cy2 = mean(y2);
+
+% % displays image
+% figure(1), hold off, imagesc(im1), axis image, colormap gray
+% 
+% % gets two points from the user
+% disp('Select two points from each image define rotation, scale, translation')
+% [x1, y1] = ginput(2);
+% cx1 = mean(x1); cy1 = mean(y1);
+% figure(1), hold off, imagesc(im2), axis image
+% [x2, y2] = ginput(2);
+% cx2 = mean(x2); cy2 = mean(y2);
+
 
 % translate first so that center of ref points is center of image
 tx = round((w1/2-cx1)*2);
@@ -80,3 +92,5 @@ end
 
 figure(1), hold off, imagesc(im1), axis image, colormap gray
 figure(2), hold off, imagesc(im2), axis image, colormap gray
+
+end
