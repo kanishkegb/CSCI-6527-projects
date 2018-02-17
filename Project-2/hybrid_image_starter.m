@@ -20,7 +20,7 @@ im2 = rgb2gray(im2);
 arbitrary_value = 100;
 cutoff_low = arbitrary_value;
 cutoff_high = arbitrary_value; 
-im12 = hybridImage(im1, im2, cutoff_low, cutoff_high);
+im12 = hybrid_image(im1, im2, cutoff_low, cutoff_high);
 figure(1), hold off, imagesc(im12), axis image
 
 %% Crop resulting image (optional)
