@@ -9,26 +9,25 @@ function [im1, im2] = align_images(im1, im2)
 [h2, w2, b2] = size(im2);
 
 % debugging
-x1 = [611.1519, 743.3950]';
-y1 = [288.6473, 374.2164]';
+x1 = [172.4423, 230.3518]';
+y1 = [89.5204, 90.7526]';
 
-x2 = [304.2944, 443.0607]';
-y2 = [348.6121, 334.2570]';
+x2 = [179.8591, 241.3190]';
+y2 = [97.9139, 99.1431]';
 
 cx1 = mean(x1); cy1 = mean(y1);
 cx2 = mean(x2); cy2 = mean(y2);
 
-% displays image
-figure(1), hold off, imagesc(im1), axis image, colormap gray
-
-% gets two points from the user
-disp('Select two points from each image define rotation, scale, translation')
-[x1, y1] = ginput(2);
-cx1 = mean(x1); cy1 = mean(y1);
-figure(1), hold off, imagesc(im2), axis image
-[x2, y2] = ginput(2);
-cx2 = mean(x2); cy2 = mean(y2);
-
+% % displays image
+% figure(1), hold off, imagesc(im1), axis image, colormap gray
+% 
+% % gets two points from the user
+% disp('Select two points from each image define rotation, scale, translation')
+% [x1, y1] = ginput(2)
+% cx1 = mean(x1); cy1 = mean(y1);
+% figure(1), hold off, imagesc(im2), axis image
+% [x2, y2] = ginput(2)
+% cx2 = mean(x2); cy2 = mean(y2);
 
 % translate first so that center of ref points is center of image
 tx = round((w1/2-cx1)*2);

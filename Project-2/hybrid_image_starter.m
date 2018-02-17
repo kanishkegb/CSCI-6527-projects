@@ -3,10 +3,10 @@
 addpath ./images
 
 % read images and convert to single format
-im1 = im2single(imread('DerekPicture.jpg'));
-im2 = im2single(imread('nutmeg.jpg'));
-x = [127, 631]';
-y = [476, 1109]';
+im1 = im2single(imread('bran.jpg'));
+im2 = im2single(imread('night_king.jpg'));
+x = [81, 275]';
+y = [216, 415]';
 
 % im1 = rgb2gray(im1); % convert to grayscale
 % im2 = rgb2gray(im2);
@@ -20,17 +20,16 @@ y = [476, 1109]';
 
 %% Choose the cutoff frequencies and compute the hybrid image (you supply
 %% this code)
-arbitrary_value = 100;
-cutoff_low = 12;
-cutoff_high = 12; 
+cutoff_low = ;
+cutoff_high = 1; 
 im12 = hybrid_image(im1, im2, cutoff_low, cutoff_high);
-figure(1)
-imagesc(im12);
+% figure(1)
+% imagesc(im12);
 
 %% Crop resulting image (optional)
-figure(1), hold off, imagesc(im12), axis image, colormap gray
-disp('input crop points');
-[x, y] = ginput(2);  x = round(x); y = round(y);
+% figure(1), hold off, imagesc(im12), axis image, colormap gray
+% disp('input crop points');
+% [x, y] = ginput(2);  x = round(x); y = round(y);
 im12 = im12(min(y):max(y), min(x):max(x), :);
 figure(1)
 show_hybrid(im12)
