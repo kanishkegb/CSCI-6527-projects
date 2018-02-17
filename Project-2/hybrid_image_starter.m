@@ -20,8 +20,8 @@ y = [216, 415]';
 
 %% Choose the cutoff frequencies and compute the hybrid image (you supply
 %% this code)
-cutoff_low = ;
-cutoff_high = 1; 
+cutoff_low = 5;
+cutoff_high =  2; 
 im12 = hybrid_image(im1, im2, cutoff_low, cutoff_high);
 % figure(1)
 % imagesc(im12);
