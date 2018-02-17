@@ -21,7 +21,13 @@ arbitrary_value = 100;
 cutoff_low = 10;
 cutoff_high = 15; 
 im12 = hybrid_image(im1, im2, cutoff_low, cutoff_high);
-figure(1), hold off, imagesc(im12), axis image
+figure(1), hold off, 
+subplot(3,4,[1 11])
+imagesc(im12), axis image
+set(gca,'xcolor','w','ycolor','w','xtick',[],'ytick',[])
+subplot(3,4,4)
+imagesc(im12), axis image
+set(gca,'xcolor','w','ycolor','w','xtick',[],'ytick',[])
 
 %% Crop resulting image (optional)
 % figure(1), hold off, imagesc(im12), axis image, colormap gray
