@@ -1,10 +1,13 @@
-close all; % closes all figures
+% close all; % closes all figures
 
 addpath ./images
 
 % read images and convert to single format
 im1 = im2single(imread('DerekPicture.jpg'));
 im2 = im2single(imread('nutmeg.jpg'));
+x = [127, 631]';
+y = [476, 1109]';
+
 % im1 = rgb2gray(im1); % convert to grayscale
 % im2 = rgb2gray(im2);
 
@@ -18,23 +21,22 @@ im2 = im2single(imread('nutmeg.jpg'));
 %% Choose the cutoff frequencies and compute the hybrid image (you supply
 %% this code)
 arbitrary_value = 100;
-cutoff_low = 10;
-cutoff_high = 15; 
+cutoff_low = 12;
+cutoff_high = 12; 
 im12 = hybrid_image(im1, im2, cutoff_low, cutoff_high);
-figure(1), hold off, 
-subplot(3,4,[1 11])
-imagesc(im12), axis image
-set(gca,'xcolor','w','ycolor','w','xtick',[],'ytick',[])
-subplot(3,4,4)
-imagesc(im12), axis image
-set(gca,'xcolor','w','ycolor','w','xtick',[],'ytick',[])
+figure(1)
+imagesc(im12);
 
 %% Crop resulting image (optional)
-% figure(1), hold off, imagesc(im12), axis image, colormap gray
-% disp('input crop points');
-% [x, y] = ginput(2);  x = round(x); y = round(y);
-% im12 = im12(min(y):max(y), min(x):max(x), :);
-% figure(1), hold off, imagesc(im12), axis image, colormap gray
+figure(1), hold off, imagesc(im12), axis image, colormap gray
+disp('input crop points');
+[x, y] = ginput(2);  x = round(x); y = round(y);
+im12 = im12(min(y):max(y), min(x):max(x), :);
+figure(1)
+show_hybrid(im12)
+% figure(2)
+% imagesc(im12)
+% set(gca,'xcolor','w','ycolor','w','xtick',[],'ytick',[])
 
 %% Compute and display Gaussian and Laplacian Pyramids (you need to supply this function)
 % N = 5; % number of pyramid levels (you may use more or fewer, as needed)
