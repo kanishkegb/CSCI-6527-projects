@@ -90,7 +90,7 @@ else
     ty = ty+ceil(brd);    
 end
 
-figure(1), hold off, imagesc(im1), axis image, colormap gray
-figure(2), hold off, imagesc(im2), axis image, colormap gray
+% figure(1), hold off, imagesc(im1), axis image, colormap gray
+% figure(2), hold off, imagesc(im2), axis image, colormap gray
 
 end
