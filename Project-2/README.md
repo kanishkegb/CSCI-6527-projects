@@ -14,7 +14,7 @@ A hybrid image is an image that is perceived in one of two different ways, depen
 
 <div id="container">
 <center>
-    <img src="/report/einstein-monroe.jpg"
+    <img src="report/einstein-monroe.jpg"
     width="200"/>
 </center>
 </div>
@@ -33,43 +33,43 @@ This section describes steps to be followed in order to create a hybrid image as
 
 1. Select two images that you think may create a cool looking hybrid image.
     <center>
-      <img src="/images/flash.jpg"  width="170"/>
-      <img src="/images/spiderman.jpg"  width="250"/>
+      <img src="images/flash.jpg"  width="170"/>
+      <img src="images/spiderman.jpg"  width="250"/>
     </center>
 
 2. Then align them and crop them such that they look better. For this example, two images were aligned based on the eye positions. The left image shows the aligned and cropped image, while the right image shows the log magnitude of the Fourier transform of the right image.
     <center>
-      <img src="/report/1_flash.png"  width="350"/>
-      <img src="/report/2_flash_fft.png"  width="350"/>
+      <img src="report/1_flash.png"  width="350"/>
+      <img src="report/2_flash_fft.png"  width="350"/>
     </center>  
 Below image shows the aligned and cropped image of the Spider-Man.
     <center>
-      <img src="/report/3_spiderman.png"  width="350"/>
-      <img src="/report/4_spiderman_fft.png"  width="350"/>
+      <img src="report/3_spiderman.png"  width="350"/>
+      <img src="report/4_spiderman_fft.png"  width="350"/>
     </center>
 
 3. Next, the image of the Flash is processed using a low-pass filter. For this a Gaussian filter is used. The cut-off frequency is determined by trial and error method.
     <center>
-      <img src="/report/5_flash_filtered.png"  width="350"/>
-      <img src="/report/6_flash_filtered_fft.png"  width="350"/>
+      <img src="report/5_flash_filtered.png"  width="350"/>
+      <img src="report/6_flash_filtered_fft.png"  width="350"/>
     </center>
 
 4. Then, the image of the Spider-Man is processed using a high-pass filter. For this, the impulse filter minus the Gaussian filter, which was suggested by the original paper is used.
     <center>
-      <img src="/report/7_spiderman_filtered.png"  width="350"/>
-      <img src="/report/8_spiderman_filtered_fft.png"  width="350"/>
+      <img src="report/7_spiderman_filtered.png"  width="350"/>
+      <img src="report/8_spiderman_filtered_fft.png"  width="350"/>
     </center>
 
 5. Finally, both the filtered images were fused together by simply adding them together.
     <center>
-      <img src="/report/9_hybrid.png"  width="350"/>
-      <img src="/report/10_hybrid_fft.png"  width="350"/>
+      <img src="report/9_hybrid.png"  width="350"/>
+      <img src="report/10_hybrid_fft.png"  width="350"/>
     </center>
 
 If you are closed to the image, you will see Spider-Man. If you blur your eyes, or increase the distance from the image to the eye, you will see Flash. To make it easier, I will display a smaller image next to the original image.
     <center>
-      <img src="/report/9_hybrid.png"  width="600"/>
-      <img src="/report/9_hybrid.png"  width="100"/>
+      <img src="report/9_hybrid.png"  width="600"/>
+      <img src="report/9_hybrid.png"  width="100"/>
     </center>
 
 For more cool images, check the [gallery](#gallery) below.
@@ -81,60 +81,60 @@ For more cool images, check the [gallery](#gallery) below.
 
 Do you remember that day when you had to pick a decision from two, and you already knew which decision you want to take, but you still went with the coin hoping the coin will pick the decision you want? Well, use this coin next time!  
 <center>
-  <img src="/hybrid_images/coin.png"  width="600"/>
-  <img src="/hybrid_images/coin.png"  width="100"/>
+  <img src="hybrid_images/coin.png"  width="600"/>
+  <img src="hybrid_images/coin.png"  width="100"/>
 </center>  
 
 original images:  
 <center>
-  <img src="/images/head.jpg"  width="200"/>
-  <img src="/images/tail.jpg"  width="150"/>
+  <img src="images/head.jpg"  width="200"/>
+  <img src="images/tail.jpg"  width="150"/>
 </center>  
 
 
 If you are a Game of Thrones fan, you are going to be a bit disheartened by the next image. All the GOT fans (maybe most of them) want Daenerys Targaryen and Jon Snow to kill the Night King (and of course Cersei Lannister). But, did you know that Bran Start is actually the Night King? You don't believe me? Check out this.  
 <center>
-  <img src="/hybrid_images/night_king.png"  width="600"/>
-  <img src="/hybrid_images/night_king.png"  width="100"/>
+  <img src="hybrid_images/night_king.png"  width="600"/>
+  <img src="hybrid_images/night_king.png"  width="100"/>
 </center>  
 
 original images:  
 <center>
-  <img src="/images/bran.jpg"  width="150"/>
-  <img src="/images/night_king.jpg"  width="150"/>
+  <img src="images/bran.jpg"  width="150"/>
+  <img src="images/night_king.jpg"  width="150"/>
 </center>  
 
 
 Okay, enough of fictional characters. Let's see something technical. We all use Google Maps in a day to day basis. Most of them the time we stick with the "Default mode" where we see digitally colored version of the satellite imagery. Below are hybrid images of both the digital map and the satellite imagery.
 <center>
-  <img src="/hybrid_images/map_1.png"  width="600"/>
-  <img src="/hybrid_images/map_1.png"  width="100"/>
+  <img src="hybrid_images/map_1.png"  width="600"/>
+  <img src="hybrid_images/map_1.png"  width="100"/>
 </center>  
 
 original images:  
 <center>
-  <img src="/images/map_1.png"  width="150"/>
-  <img src="/images/satellite_1.png"  width="170"/>
+  <img src="images/map_1.png"  width="150"/>
+  <img src="images/satellite_1.png"  width="170"/>
 </center>  
 
 <center>
-  <img src="/hybrid_images/map_2.png"  width="600"/>
-  <img src="/hybrid_images/map_2.png"  width="100"/>
+  <img src="hybrid_images/map_2.png"  width="600"/>
+  <img src="hybrid_images/map_2.png"  width="100"/>
 </center>  
 original images:  
 <center>
-  <img src="/images/map_2.png"  width="150"/>
-  <img src="/images/satellite_2.png"  width="155"/>
+  <img src="images/map_2.png"  width="150"/>
+  <img src="images/satellite_2.png"  width="155"/>
 </center>  
 
 Finally, an orange. Because who doesn't love oranges!
 <center>
-  <img src="/hybrid_images/oranges.png"  width="600"/>
-  <img src="/hybrid_images/oranges.png"  width="100"/>
+  <img src="hybrid_images/oranges.png"  width="600"/>
+  <img src="hybrid_images/oranges.png"  width="100"/>
 </center>  
 
 original images:  
 <center>
-  <img src="/images/oranges.jpg"  width="150"/>
-  <img src="/images/slice.jpg"  width="170"/>
+  <img src="images/oranges.jpg"  width="150"/>
+  <img src="images/slice.jpg"  width="170"/>
 </center>  
