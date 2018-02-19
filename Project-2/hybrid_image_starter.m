@@ -3,10 +3,10 @@
 addpath ./images
 
 % read images and convert to single format
-im1 = im2single(imread('bran_grey.jpg'));
-im2 = im2single(imread('night_king.jpg'));
-x = [45, 339]';
-y = [235, 486]';
+im1 = im2single(imread('flash.jpg'));
+im2 = im2single(imread('spiderman.jpg'));
+x = [6, 651]';
+y = [206, 754]';
 
 % im1 = rgb2gray(im1); % convert to grayscale
 % im2 = rgb2gray(im2);
@@ -20,8 +20,8 @@ y = [235, 486]';
 
 %% Choose the cutoff frequencies and compute the hybrid image (you supply
 %% this code)
-cutoff_low = 4;
-cutoff_high = 1.5; 
+cutoff_low = 8;
+cutoff_high = 4; 
 im12 = hybrid_image(im1, im2, cutoff_low, cutoff_high);
 % figure(1)
 % imagesc(im12);
