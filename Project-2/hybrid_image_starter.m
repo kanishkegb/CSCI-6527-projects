@@ -3,10 +3,10 @@
 addpath ./images
 
 % read images and convert to single format
-im1 = im2single(imread('lime.jpg'));
-im2 = im2single(imread('tennis.jpg'));
-x = [8, 138]';
-y = [21, 155]';
+im1 = im2single(imread('bran_grey.jpg'));
+im2 = im2single(imread('night_king.jpg'));
+x = [45, 339]';
+y = [235, 486]';
 
 % im1 = rgb2gray(im1); % convert to grayscale
 % im2 = rgb2gray(im2);
@@ -20,8 +20,8 @@ y = [21, 155]';
 
 %% Choose the cutoff frequencies and compute the hybrid image (you supply
 %% this code)
-cutoff_low = 2;
-cutoff_high = 1.; 
+cutoff_low = 4;
+cutoff_high = 1.5; 
 im12 = hybrid_image(im1, im2, cutoff_low, cutoff_high);
 % figure(1)
 % imagesc(im12);
@@ -34,9 +34,9 @@ im12 = im12(min(y):max(y), min(x):max(x), :);
 figure(1)
 show_hybrid(im12)
 % figure(2)
-% imagesc(im12)
-% set(gca,'xcolor','w','ycolor','w','xtick',[],'ytick',[])
-% axis equal
+imagesc(im12)
+set(gca,'xcolor','w','ycolor','w','xtick',[],'ytick',[])
+axis equal
 
 %% Compute and display Gaussian and Laplacian Pyramids (you need to supply this function)
 % N = 5; % number of pyramid levels (you may use more or fewer, as needed)
