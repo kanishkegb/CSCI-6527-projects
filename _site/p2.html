@@ -68,55 +68,49 @@
 <p>This section describes steps to be followed in order to create a hybrid image as described in the paper by <a href="http://cvcl.mit.edu/publications/OlivaTorralb_Hybrid_Siggraph06.pdf">Schyns and Oliva</a>. Creating a hybrid image is not that hard. The hardest part is finding two figures that would create a better hybrid image.</p>
 
 <ol>
-  <li>Select two images that you think may create a cool looking hybrid image.</li>
+  <li>Select two images that you think may create a cool looking hybrid image.
+    <center>
+   <img src="Project-2/images/flash.jpg" width="170">
+   <img src="Project-2/images/spiderman.jpg" width="250">
+ </center>
+  </li>
+  <li>Then align them and crop them such that they look better. For this example, two images were aligned based on the eye positions. The left image shows the aligned and cropped image, while the right image shows the log magnitude of the Fourier transform of the right image.
+    <center>
+   <img src="Project-2/report/1_flash.png" width="350">
+   <img src="Project-2/report/2_flash_fft.png" width="350">
+ </center>
+    <p>Below image shows the aligned and cropped image of the Spider-Man.</p>
+    <center>
+   <img src="Project-2/report/3_spiderman.png" width="350">
+   <img src="Project-2/report/4_spiderman_fft.png" width="350">
+ </center>
+  </li>
+  <li>Next, the image of the Flash is processed using a low-pass filter. For this a Gaussian filter is used. The cut-off frequency is determined by trial and error method. +
+    <center>
+   <img src="Project-2/report/5_flash_filtered.png" width="350">
+   <img src="Project-2/report/6_flash_filtered_fft.png" width="350">
+ </center>
+  </li>
+  <li>Then, the image of the Spider-Man is processed using a high-pass filter. For this, the impulse filter minus the Gaussian filter, which was suggested by the original paper is used.
+    <center>
+   <img src="Project-2/report/7_spiderman_filtered.png" width="350">
+   <img src="Project-2/report/8_spiderman_filtered_fft.png" width="350">
+ </center>
+  </li>
+  <li>Finally, both the filtered images were fused together by simply adding them together.
+    <center>
+   <img src="Project-2/report/9_hybrid.png" width="350">
+   <img src="Project-2/report/10_hybrid_fft.png" width="350">
+ </center>
+  </li>
 </ol>
-<center>
-  <img src="Project-2/images/flash.jpg" width="170">
-  <img src="Project-2/images/spiderman.jpg" width="250">
-</center>
 
-<ol>
-  <li>Then align them and crop them such that they look better. For this example, two images were aligned based on the eye positions. The left image shows the aligned and cropped image, while the right image shows the log magnitude of the Fourier transform of the right image.</li>
-</ol>
+<p>If you are closed to the image, you will see Spider-Man. If you blur your eyes, or increase the distance from the image to the eye, you will see Flash. To make it easier, I will display a smaller image next to the original image.
+    </p>
 <center>
-  <img src="Project-2/report/1_flash.png" width="400">
-  <img src="Project-2/report/2_flash_fft.png" width="400">
-</center>
-<p>Below image shows the aligned and cropped image of the Spider-Man.</p>
-<center>
-  <img src="Project-2/report/3_spiderman.png" width="400">
-  <img src="Project-2/report/4_spiderman_fft.png" width="400">
-</center>
-
-<ol>
-  <li>Next, the image of the Flash is processed using a low-pass filter. For this a Gaussian filter is used. The cut-off frequency is determined by trial and error method. +</li>
-</ol>
-<center>
-  <img src="Project-2/report/5_flash_filtered.png" width="400">
-  <img src="Project-2/report/6_flash_filtered_fft.png" width="400">
-</center>
-
-<ol>
-  <li>Then, the image of the Spider-Man is processed using a high-pass filter. For this, the impulse filter minus the Gaussian filter, which was suggested by the original paper is used.</li>
-</ol>
-<center>
-  <img src="Project-2/report/7_spiderman_filtered.png" width="400">
-  <img src="Project-2/report/8_spiderman_filtered_fft.png" width="400">
-</center>
-
-<ol>
-  <li>Finally, both the filtered images were fused together by simply adding them together.</li>
-</ol>
-<center>
-  <img src="Project-2/report/9_hybrid.png" width="400">
-  <img src="Project-2/report/10_hybrid_fft.png" width="400">
-</center>
-
-<p>If you are closed to the image, you will see Spider-Man. If you blur your eyes, or increase the distance from the image to the eye, you will see Flash. To make it easier, I will display a smaller image next to the original image.</p>
-<center>
-  <img src="Project-2/report/9_hybrid.png" width="600">
-  <img src="Project-2/report/9_hybrid.png" width="100">
-</center>
+      <img src="Project-2/report/9_hybrid.png" width="600">
+      <img src="Project-2/report/9_hybrid.png" width="100">
+    </center>
 
 <p>For more cool images, check the <a href="#gallery">gallery</a> below.</p>
 
