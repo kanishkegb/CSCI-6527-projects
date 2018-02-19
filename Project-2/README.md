@@ -124,7 +124,7 @@ original images:
 original images:  
 <center>
   <img src="images/map_2.png"  width="150"/>
-  <img src="images/satellite_2.png"  width="155"/>
+  <img src="images/satellite_2.png"  width="150"/>
 </center>  
 
 Finally, an orange. Because who doesn't love oranges!
