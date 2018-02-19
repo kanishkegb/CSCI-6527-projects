@@ -1,4 +1,6 @@
 function [im_fil_fft, im_fil] = guassian_filter_fourier(im, hs)
+% applies a Gaussian filter to an image in Fourier domain and returns
+% the image in Fourier domain and as an image
 
 % hs = 7; % filter half-size
 fil = fspecial('gaussian', hs*2+1, 10); 

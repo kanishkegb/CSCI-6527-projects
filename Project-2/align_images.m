@@ -8,26 +8,19 @@ function [im1, im2] = align_images(im1, im2)
 [h1, w1, b1] = size(im1);
 [h2, w2, b2] = size(im2);
 
-% debugging
-x1 = [408.8, 558.6]';
-y1 = [106.9, 289.6]';
-
-x2 = [241.2, 357.3]';
-y2 = [139.7, 275.5]';
-
 cx1 = mean(x1); cy1 = mean(y1);
 cx2 = mean(x2); cy2 = mean(y2);
 
-% % displays image
-% figure(1), hold off, imagesc(im1), axis image, colormap gray
-% 
-% % gets two points from the user
-% disp('Select two points from each image define rotation, scale, translation')
-% [x1, y1] = ginput(2)
-% cx1 = mean(x1); cy1 = mean(y1);
-% figure(1), hold off, imagesc(im2), axis image
-% [x2, y2] = ginput(2)
-% cx2 = mean(x2); cy2 = mean(y2);
+% displays image
+figure(1), hold off, imagesc(im1), axis image, colormap gray
+
+% gets two points from the user
+disp('Select two points from each image define rotation, scale, translation')
+[x1, y1] = ginput(2)
+cx1 = mean(x1); cy1 = mean(y1);
+figure(1), hold off, imagesc(im2), axis image
+[x2, y2] = ginput(2)
+cx2 = mean(x2); cy2 = mean(y2);
 
 % translate first so that center of ref points is center of image
 tx = round((w1/2-cx1)*2);
@@ -37,7 +30,7 @@ end
 ty = round((h1/2-cy1)*2);
 if ty > 0,  im1 = padarray(im1, [ty 0], 'pre');
 else        im1 = padarray(im1, [-ty 0], 'post');
-end  
+end
 tx = round((w2/2-cx2)*2) ;
 if tx > 0,  im2 = padarray(im2, [0 tx], 'pre');
 else        im2 = padarray(im2, [0 -tx], 'post');
@@ -52,7 +45,7 @@ len1 = sqrt((y1(2)-y1(1)).^2+(x1(2)-x1(1)).^2);
 len2 = sqrt((y2(2)-y2(1)).^2+(x2(2)-x2(1)).^2);
 dscale = len2 ./ len1;
 if dscale < 1
-    im1 = imresize(im1, dscale, 'bilinear'); 
+    im1 = imresize(im1, dscale, 'bilinear');
 else
     im2 = imresize(im2, 1./dscale, 'bilinear');
 end
@@ -76,7 +69,7 @@ if minw == w1 % crop w2
     tx = tx-ceil(brd);
 else
     im1 = im1(:, (ceil(brd)+1):end-floor(brd), :);
-    tx = tx+ceil(brd);    
+    tx = tx+ceil(brd);
 end
 
 minh = min(h1, h2);
@@ -86,7 +79,7 @@ if minh == h1 % crop w2
     ty = ty-ceil(brd);
 else
     im1 = im1((ceil(brd)+1):end-floor(brd), :, :);
-    ty = ty+ceil(brd);    
+    ty = ty+ceil(brd);
 end
 
 % figure(1), hold off, imagesc(im1), axis image, colormap gray
