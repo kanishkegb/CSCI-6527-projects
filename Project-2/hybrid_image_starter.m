@@ -3,10 +3,10 @@
 addpath ./images
 
 % read images and convert to single format
-im1 = im2single(imread('landscape.jpg'));
-im2 = im2single(imread('mamoth.jpg'));
-x = [3, 842]';
-y = [7, 705]';
+im1 = im2single(imread('Screenshot (20).png'));
+im2 = im2single(imread('Screenshot (19).png'));
+x = [1348, 5]';
+y = [311, 1056]';
 
 % im1 = rgb2gray(im1); % convert to grayscale
 % im2 = rgb2gray(im2);
@@ -21,21 +21,21 @@ y = [7, 705]';
 %% Choose the cutoff frequencies and compute the hybrid image (you supply
 %% this code)
 cutoff_low = 5;
-cutoff_high =  20; 
+cutoff_high = 3; 
 im12 = hybrid_image(im1, im2, cutoff_low, cutoff_high);
 % figure(1)
 % imagesc(im12);
 
 %% Crop resulting image (optional)
-figure(1), hold off, imagesc(im12), axis image, colormap gray
-disp('input crop points');
-[x, y] = ginput(2);  x = round(x); y = round(y);
+% figure(1), hold off, imagesc(im12), axis image, colormap gray
+% disp('input crop points');
+% [x, y] = ginput(2);  x = round(x); y = round(y);
 im12 = im12(min(y):max(y), min(x):max(x), :);
 figure(1)
 show_hybrid(im12)
-% figure(2)
-% imagesc(im12)
-% set(gca,'xcolor','w','ycolor','w','xtick',[],'ytick',[])
+figure(2)
+imagesc(im12)
+set(gca,'xcolor','w','ycolor','w','xtick',[],'ytick',[])
 
 %% Compute and display Gaussian and Laplacian Pyramids (you need to supply this function)
 % N = 5; % number of pyramid levels (you may use more or fewer, as needed)
