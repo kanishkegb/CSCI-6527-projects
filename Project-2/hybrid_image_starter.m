@@ -3,10 +3,10 @@
 addpath ./images
 
 % read images and convert to single format
-im1 = im2single(imread('head.jpg'));
-im2 = im2single(imread('tail.jpg'));
-x = [12, 255]';
-y = [125, 370]';
+im1 = im2single(imread('lime.jpg'));
+im2 = im2single(imread('tennis.jpg'));
+x = [8, 138]';
+y = [21, 155]';
 
 % im1 = rgb2gray(im1); % convert to grayscale
 % im2 = rgb2gray(im2);
@@ -20,8 +20,8 @@ y = [125, 370]';
 
 %% Choose the cutoff frequencies and compute the hybrid image (you supply
 %% this code)
-cutoff_low = 5;
-cutoff_high = 1.5; 
+cutoff_low = 2;
+cutoff_high = 1.; 
 im12 = hybrid_image(im1, im2, cutoff_low, cutoff_high);
 % figure(1)
 % imagesc(im12);
