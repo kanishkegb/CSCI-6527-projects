@@ -3,7 +3,7 @@ clear;
 
 addpath ./images
 
-depth_image = 'depth.jpg';
+depth_image = 'teapot.jpg';
 im_check = imread(depth_image);
 
 if length(size(im_check)) == 3
@@ -12,8 +12,11 @@ else
     im = im2double(imread(depth_image));
 end
 
-% im = imcomplement(im);
+im = imcomplement(im);
 [h, w] = size(im);
+
+gap = floor(w/20);
+scale = .5;
 
 im_out = zeros(h, w, 3);
 for r = 1:h
@@ -27,10 +30,7 @@ for r = 1:h
         x = c;
         color = [rand(1), rand(1), rand(1)];
         
-        gap = floor(w/20);
-        scale = .5;
-
-        while x <= w 
+        while x <= w
             im_out(r, x, :) = color;
             
             d = gap + floor(255*im(r, x)*scale);
