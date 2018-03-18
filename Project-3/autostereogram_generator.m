@@ -3,7 +3,7 @@ clear;
 
 addpath ./images
 
-depth_image = 'teapot.jpg';
+depth_image = 'peaks.png';
 im_check = imread(depth_image);
 
 if length(size(im_check)) == 3
