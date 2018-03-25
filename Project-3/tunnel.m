@@ -12,8 +12,8 @@ min_r = t_data.min_r;
 num_circles = t_data.num_circles;
 
 for cir = 1:num_circles
-    depth = cir/num_circles;
-    r = (max_r - min_r) * (num_circles - cir) / num_circles
+    depth = cir/num_circles
+    r = min_r + (max_r - min_r) * (num_circles - cir) / num_circles
     for x = -r:r
         for y = -r:r
             if round(sqrt(x^2 + y^2)) < r
