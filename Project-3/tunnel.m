@@ -1,14 +1,15 @@
-function im = tunnel(num_circles)
-h = 600;
-w = 800;
+function im = tunnel(t_data)
+
+h = t_data.h;
+w = t_data.w;
+x0 = t_data.x0;
+y0 = t_data.y0;
 
 im = zeros(h, w);
 
-x0 = h/2;
-y0 = w/2;
-
-max_r = 600;
-min_r = 100;
+max_r = t_data.max_r;
+min_r = t_data.min_r;
+num_circles = t_data.num_circles;
 
 for cir = 1:num_circles
     depth = cir/num_circles;
