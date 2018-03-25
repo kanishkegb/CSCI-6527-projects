@@ -3,31 +3,22 @@ clear;
 
 addpath ./images
 
-% depth_image = 'tunnel0.png';
-% im_check = imread(depth_image);
-%
-% if length(size(im_check)) == 3
-%     im = im2double(rgb2gray(imread(depth_image)));
-% else
-%     im = im2double(imread(depth_image));
-% end
+h = 600;
+w = 800;
+x0 = h/2;
+y0 = w/2;
+max_r = 300;
+min_r = 100;
+num_circles = 8;
 
-% im = imcomplement(im);
-
-t_data = struct;
-t_data.h = 600;
-t_data.w = 800;
-t_data.x0 = t_data.h/2;
-t_data.y0 = t_data.w/2;
-t_data.max_r = 300;
-t_data.min_r = 100;
-t_data.num_circles = 8;
+t_data = struct('h', h, 'w', w, 'x0', x0, 'y0', y0, 'max_r', max_r, ...
+                'min_r', min_r, 'num_circles', num_circles);
 
 im_tunnel = imgaussfilt(tunnel(t_data), 2);
 
-% for i = t_data.max_r:t_data.min_r
-    
-    im_out = autostereogram(im_tunnel);
+% for r = min_r:max_r
+    im_frame = draw_cir_on_image(im_tunnel, 50, 0, x0, y0);
+    im_out = autostereogram(im_frame);
 % end
 
 % imshow(im)
