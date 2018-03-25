@@ -1,4 +1,4 @@
-function im_out = autostereogram(im)
+function im_out = autostereogram(im, cmap)
 
 [h, w] = size(im);
 
@@ -15,7 +15,7 @@ for r = 1:h
         end
 
         x = c;
-        color = [rand(1), rand(1), rand(1)];
+        color = [cmap(r, c, 1), cmap(r, c, 2), cmap(r, c, 3)];
         
         while x <= w
             im_out(r, x, :) = color;
