@@ -5,7 +5,7 @@ addpath ./images
 
 % depth_image = 'tunnel0.png';
 % im_check = imread(depth_image);
-% 
+%
 % if length(size(im_check)) == 3
 %     im = im2double(rgb2gray(imread(depth_image)));
 % else
@@ -23,8 +23,12 @@ t_data.max_r = 300;
 t_data.min_r = 100;
 t_data.num_circles = 8;
 
-im = imgaussfilt(tunnel(t_data), 2);
-im_out = autostereogram(im);
+im_tunnel = imgaussfilt(tunnel(t_data), 2);
+
+% for i = t_data.max_r:t_data.min_r
+    
+    im_out = autostereogram(im_tunnel);
+% end
 
 % imshow(im)
 hold on
