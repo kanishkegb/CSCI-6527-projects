@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>CSCI 6527 - Projects | Kanishke Gamagedara</title>
+<meta property="og:title" content="CSCI 6527 - Projects" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kanishke Gamagedara" />
+<meta property="og:description" content="Kanishke Gamagedara" />
+<link rel="canonical" href="http://localhost:4000/p3.html" />
+<meta property="og:url" content="http://localhost:4000/p3.html" />
+<meta property="og:site_name" content="CSCI 6527 - Projects" />
+<script type="application/ld+json">
+{"name":null,"description":"Kanishke Gamagedara","author":null,"@type":"WebPage","url":"http://localhost:4000/p3.html","publisher":null,"image":null,"headline":"CSCI 6527 - Projects","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="description" content="Kanishke Gamagedara"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/assets/css/style.css?v=211d5326a81b1be1a26a16cecf0aa8df2a0de1a8">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">CSCI 6527 - Projects</h1>
+      <h2 class="project-tagline">Kanishke Gamagedara</h2>
+      
+        <a href="http://github.com/kanishkegb/CSCI-6527-projects" class="btn">View on GitHub</a>
+      
+      
+    </section>
+
+    <section class="main-content">
+      <p><a href="index">Home</a></p>
+
+<h1 id="project-3-stereo-and-depth">Project 3: Stereo and Depth</h1>
+
+<p><a name="contents"></a></p>
+<h2 id="contents">Contents</h2>
+<ol>
+  <li><a href="#intro">Introduction</a></li>
+  <li><a href="#procedure">Procedure</a></li>
+  <li><a href="#gallery">Gallery</a></li>
+  <li><a href="moving_autostereogram">Moving Autostereogram</a></li>
+</ol>
+
+<p><a name="intro"></a></p>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>An autostereogram is basically an optical illusion that trick your eye to see depth in a 2D image. This became popular in 1990’s as <em>Magic Eye</em>. The objective of this project is to generate an autostereogram from a given depth map.</p>
+
+<center>
+  <img src="Project-3/autostereogram/saturn.jpg" width="350" />
+</center>
+
+<p>Above is an example for an autostereogram. If you need any help viewing the image, please visit the <a href="http://www.magiceye.com/faq_example.htm">original web page</a> for instructions, where this was published.</p>
+
+<p><a href="#contents">back to contents</a></p>
+
+<p><a name="procedure"></a></p>
+<h2 id="2-procedure">2. Procedure</h2>
+<p>To generate an autostereogram, the first thing one would need is the depth map. For this example, the depth image is chosen as a view of some mountains. Black color shows the closer objects while white areas shows further objects.</p>
+
+<center>
+  <img src="Project-3/images/depth.jpg" width="350" />
+</center>
+
+<p>The pseudo-code for generating the autostereogram is given below:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>start at the left pixel of each row.  (ie, let x = 1)
+randomly pick color C.
+color location x with color C.
+    look up the depth (Z) at pixel location x on that row.
+    map Z onto a displacement d (something like d = 100 + Z/2).
+    x = x + d.
+    if x is still in the image
+        (that is, if you haven't gone off the right edge)
+        then loop to "color location x..."
+
+if x isn't still in the image, set x to the position of the
+    leftmost pixel that isn't colored at all yet,
+loop to "randomly pick color C"
+</code></pre></div></div>
+
+<p>Implementing this algorithm generates the below autostereogram.</p>
+<center>
+  <img src="Project-3/autostereogram/depth.png" width="800" />
+</center>
+
+<p>For more cool images, check the <a href="#gallery">gallery</a>.</p>
+
+<p><a href="#contents">back to contents</a></p>
+
+<p><a name="gallery"></a></p>
+<h2 id="3-gallery">3. Gallery</h2>
+
+<center>
+  <img src="Project-3/autostereogram/tunnel.png" width="800" />
+</center>
+
+<center>
+  <img src="Project-3/autostereogram/shark.png" width="800" />
+</center>
+
+<center>
+  <img src="Project-3/autostereogram/plane.png" width="800" />
+</center>
+
+<center>
+  <img src="Project-3/autostereogram/fountain.png" width="800" />
+</center>
+
+<center>
+  <img src="Project-3/autostereogram/garden.png" width="800" />
+</center>
+
+<center>
+  <img src="Project-3/autostereogram/gunman.png" width="800" />
+</center>
+
+<!-- <center>
+  <img src="Project-3/autostereogram/peaks.png"  width="800"/>
+</center> -->
+
+<!-- <center>
+  <img src="Project-3/autostereogram/sphere.png"  width="800"/>
+</center> -->
+
+<p><a name="moving_autostereogram"></a></p>
+<h2 id="3-moving-autostereogram">3. Moving Autostereogram</h2>
+
+<p>One another cool feature we can implement with this techniques is a moving autostereogram. Basically depth map we choose must be a function of time. We generate the autostereogram for each frame and combine them into a single sequence of images, as a gif or a video.</p>
+
+
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="http://github.com/kanishkegb/CSCI-6527-projects">CSCI-6527-projects</a> is maintained by <a href="http://github.com/kanishkegb">kanishkegb</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </section>
+
+    
+  </body>
+</html>

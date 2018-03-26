@@ -3,7 +3,7 @@ clear;
 
 addpath ./images
 
-depth_image = 'tunnel.png';
+depth_image = 'teapot.jpg';
 im_check = imread(depth_image);
 
 if length(size(im_check)) == 3
@@ -12,8 +12,11 @@ else
     im = im2double(imread(depth_image));
 end
 
-% im = imcomplement(im);
-im_out = autostereogram(im);
+[h, w, c] = size(im);
+cmap = rand([h, w, 3]);
+
+im = imcomplement(im);
+im_out = autostereogram(im, cmap);
 
 % imagesc(im_out)
 % axis equal
