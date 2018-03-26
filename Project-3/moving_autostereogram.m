@@ -8,14 +8,14 @@ w = 800;
 x0 = h/2;
 y0 = w/2;
 max_r = 300;
-min_r = 100;
-num_circles = 8;
+min_r = 50;
+num_circles = 50;
 
 t_data = struct('h', h, 'w', w, 'x0', x0, 'y0', y0, 'max_r', max_r, ...
     'min_r', min_r, 'num_circles', num_circles);
 
 % im_tunnel = imgaussfilt(tunnel(t_data), 2);
-reso = 10;
+reso = 5;
 num_frames = round((max_r - min_r) / reso)
 frames = 1:num_frames;
 
