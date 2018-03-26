@@ -1,3 +1,5 @@
+%% Parameters used for filtering different image sets
+
 %% Nutmeg
 x1 = [611.1519, 743.3950]';
 y1 = [288.6473, 374.2164]';
