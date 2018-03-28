@@ -14,7 +14,7 @@
 An autostereogram is basically an optical illusion that trick your eye to see depth in a 2D image. This became popular in 1990's as _Magic Eye_. The objective of this project is to generate an autostereogram from a given depth map.
 
 <center>
-  <img src="Project-3/autostereogram/saturn.jpg"  width="350"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/saturn.jpg"  width="350"/>
 </center>  
 
 Above is an example for an autostereogram. If you need any help viewing the image, please visit the [original web page](http://www.magiceye.com/faq_example.htm) for instructions, where this was published.
@@ -26,7 +26,7 @@ Above is an example for an autostereogram. If you need any help viewing the imag
 To generate an autostereogram, the first thing one would need is the depth map. For this example, the depth image is chosen as a view of some mountains. Black color shows the closer objects while white areas shows further objects.
 
 <center>
-  <img src="Project-3/images/depth.jpg"  width="350"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/images/depth.jpg"  width="350"/>
 </center>
 
 The pseudo-code for generating the autostereogram is given below:
@@ -48,7 +48,7 @@ loop to "randomly pick color C"
 
 Implementing this algorithm generates the below autostereogram.
 <center>
-  <img src="Project-3/autostereogram/depth.png"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/depth.png"  width="800"/>
 </center>
 
 For more cool images, check the [gallery](#gallery).
@@ -61,7 +61,7 @@ For more cool images, check the [gallery](#gallery).
 Below is a gallery of autostereograms developed. If you can't recognize any of the autostereograms or want to see the originals, check this [page](gallery).
 
 <center>
-  <img src="Project-3/autostereogram/tunnel.png"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/tunnel.png"  width="800"/>
 </center>
 
 <center>
@@ -69,19 +69,19 @@ Below is a gallery of autostereograms developed. If you can't recognize any of t
 </center>
 
 <center>
-  <img src="Project-3/autostereogram/plane.png"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/plane.png"  width="800"/>
 </center>
 
 <center>
-  <img src="Project-3/autostereogram/fountain.png"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/fountain.png"  width="800"/>
 </center>
 
 <center>
-  <img src="Project-3/autostereogram/garden.png"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/garden.png"  width="800"/>
 </center>
 
 <center>
-  <img src="Project-3/autostereogram/gunman.png"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/gunman.png"  width="800"/>
 </center>
 
 <!-- <center>
@@ -105,7 +105,7 @@ One way to generate a moving autostereogram is to define the depth map as a func
 Below is an example of the above case. The depth at the center increases with time and then reduces. The below GIF shows the generated autostereogram.
 
 <center>
-  <img src="Project-3/autostereogram/animation.gif"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/animation.gif"  width="800"/>
 </center>
 
 
@@ -118,5 +118,5 @@ Below is a depth image generated from a camera fixed on a moving vehicle.
 
 The generated video is uploaded to YouTube. But YouTube compression/codecs tend to break the video generated from Matlab. The below GIF shows a part of the moving autostereogram generated from the above video. Full video can be downloaded [here](https://drive.google.com/file/d/1keisjXLHPdrUTPRqDf9rD6GZ-ulJn-Vf/view?usp=sharing) (size: 878 MBs).
 <center>
-  <img src="Project-3/autostereogram/vid.gif"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/vid.gif"  width="800"/>
 </center>
