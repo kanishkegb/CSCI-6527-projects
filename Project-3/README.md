@@ -65,7 +65,7 @@ Below is a gallery of autostereograms developed. If you can't recognize any of t
 </center>
 
 <center>
-  <img src="Project-3/autostereogram/shark.png"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/shark.png"  width="800"/>
 </center>
 
 <center>
@@ -105,7 +105,7 @@ One way to generate a moving autostereogram is to define the depth map as a func
 Below is an example of the above case. The depth at the center increases with time and then reduces. The below GIF shows the generated autostereogram.
 
 <center>
-  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/animation.gif"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/gh-pages/Project-3/autostereogram/animation.gif"  width="800"/>
 </center>
 
 
@@ -118,5 +118,5 @@ Below is a depth image generated from a camera fixed on a moving vehicle.
 
 The generated video is uploaded to YouTube. But YouTube compression/codecs tend to break the video generated from Matlab. The below GIF shows a part of the moving autostereogram generated from the above video. Full video can be downloaded [here](https://drive.google.com/file/d/1keisjXLHPdrUTPRqDf9rD6GZ-ulJn-Vf/view?usp=sharing) (size: 878 MBs).
 <center>
-  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/vid.gif"  width="800"/>
+  <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/gh-pages/Project-3/autostereogram/vid.gif"  width="800"/>
 </center>
