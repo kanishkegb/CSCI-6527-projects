@@ -1,4 +1,4 @@
-[Home](index)
+[Home](https://github.com/kanishkegb/CSCI-6527-projects)
 
 # Project 3: Stereo and Depth
 
@@ -58,7 +58,7 @@ For more cool images, check the [gallery](#gallery).
 <a name="gallery"></a>
 ## 3. Gallery
 
-Below is a gallery of autostereograms developed. If you can't recognize any of the autostereograms or want to see the originals, check this [page](gallery).
+Below is a gallery of autostereograms developed. If you can't recognize any of the autostereograms or want to see the originals, check this [page](https://github.com/kanishkegb/CSCI-6527-projects/blob/master/Project-3/gallery.md).
 
 <center>
   <img src="https://raw.githubusercontent.com/kanishkegb/CSCI-6527-projects/master/Project-3/autostereogram/tunnel.png"  width="800"/>
