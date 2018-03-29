@@ -1,3 +1,5 @@
+% used to generated gif
+
 close all;
 clear;
 
@@ -30,14 +32,15 @@ for i = frames
     depth(i, :) = linspace(0, max_depth, num_circles);
 end
 
+% deepening
 for i = frames
     i
     im_tunnel = imgaussfilt(tunnel(t_data, depth(i, :)), 2);
     im_out = autostereogram(im_tunnel, cmap);
-    
+
     imshow(im_out)
     axis equal
-    
+
     [A,map] = rgb2ind(im_out, 256);
     if flag_first_run == 1
         flag_first_run = 0;
@@ -49,17 +52,18 @@ for i = frames
     end
 end
 
+% shallowing
 depth = flipud(depth);
 for i = frames
     i
     im_tunnel = imgaussfilt(tunnel(t_data, depth(i, :)), 2);
     im_out = autostereogram(im_tunnel, cmap);
-    
+
     imshow(im_out)
     axis equal
-    
+
     [A,map] = rgb2ind(im_out, 256);
-    
+
     imwrite(A, map, filename, 'gif', 'WriteMode', 'append', ...
         'DelayTime', .01);
 end
