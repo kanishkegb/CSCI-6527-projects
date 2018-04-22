@@ -1,5 +1,6 @@
 from sklearn import datasets, svm, metrics
 
+import cv2
 import matplotlib.image as mpimg
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -17,11 +18,11 @@ with open('train_data.pickle', 'rb') as f:
 whale_images = data['Image']
 whale_id = data['Id']
 
-for i in range(2):
+for i in range(10):
     image_name = whale_images[i]
-    image = mpimg.imread(path_prefix + 'train/' + image_name)
+    image = cv2.imread(path_prefix + 'train/' + image_name)
     id = whale_id[i]
-    import pdb; pdb.set_trace()
-    plt.imshow(image)
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
     plt.title('Whale: {}, ID: {}'.format(image_name, id))
-plt.show()
+    plt.show()
+import pdb; pdb.set_trace()
