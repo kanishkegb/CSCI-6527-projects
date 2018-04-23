@@ -3,6 +3,7 @@ import h5py
 import pandas as pd
 import pdb
 
+
 def load_data(path_prefix, read_data_again, read_all_data):
     '''
     Loads data from the files provided from Kaggle
@@ -17,6 +18,7 @@ def load_data(path_prefix, read_data_again, read_all_data):
         whale_images: list - list of NxMx3 arrays for each whale image
     '''
 
+    print('Loading data ...')
     data_file = path_prefix + 'train.csv'
     data = pd.read_csv(data_file)
     whale_image_names = data['Image']
@@ -24,6 +26,7 @@ def load_data(path_prefix, read_data_again, read_all_data):
     n_samples = len(whale_id)
 
     if read_data_again:
+        print('Saving data into hdf5 ...')
         with h5py.File('whale_data.hdf5', 'w') as f:
             grp_id = f.create_group('whale_id')
             grp_im_name = f.create_group('image_name')
@@ -37,11 +40,17 @@ def load_data(path_prefix, read_data_again, read_all_data):
                 grp_im_name.create_dataset('{}'.format(i), data=image_name)
                 grp_im.create_dataset('{}'.format(i), data=image)
                 # whale_images.append(image.reshape(1, -1)[0])
+        print('Saving data into hdf5 completed.')
 
     whale_images = []
     whale_image_names = []
     whale_id = []
-    max_data = 10
+    max_data = 100
+
+    if read_all_data:
+        print('Reading all data from hdf5 file ...')
+    else:
+        print('Reading first {} data from hdf5 file ...'.format(max_data))
 
     with h5py.File('whale_data.hdf5', 'r') as f:
         i = 0
@@ -64,6 +73,8 @@ def load_data(path_prefix, read_data_again, read_all_data):
             i += 1
             if not read_all_data and i > max_data:
                 break
+
+    print('Reading data completed.')
 
     return whale_id, whale_image_names, whale_images
 
