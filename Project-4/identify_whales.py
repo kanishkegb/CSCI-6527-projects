@@ -1,4 +1,4 @@
-from sklearn import datasets, svm, metrics
+from sklearn import svm, metrics
 from data_io import load_data
 
 import argparse
@@ -8,19 +8,35 @@ import numpy as np
 import pdb
 
 
-# f = h5py.File('whale_data.hdf5', 'r+')
-# print(1)
-
-# with open('whale_images.pickle', 'wb') as f:
-#     pickle.dump(whale_images, f)
-# print(2)
 # plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 # plt.title('Whale: {}, ID: {}'.format(image_name, id))
 # plt.show()
 
+def train_classifier(ids, image_names, images):
+    n_samples = len(ids)
+    resize_h = 400
+    resize_w = 500
 
-# data = whale_images.values.reshape((n_samples, -1))
-#
+    whales = np.zeros((n_samples, resize_h * resize_w * 3))
+    i = 0
+    for image in images:
+        resized_image = cv2.resize(image, (resize_h, resize_w))
+        whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
+        i += 1
+
+    classifier = svm.SVC(gamma=0.001)
+    classifier.fit(whales[:n_samples // 2], ids[:n_samples // 2])
+
+    expected = ids[n_samples // 2:]
+    predicted = classifier.predict(whales[n_samples // 2:])
+
+    print('Classification report for classifier {}:\n{}\n'.format(
+          classifier,  metrics.classification_report(expected, predicted)
+          ))
+    print('Confusion matrix:\n{}'.format(metrics.confusion_matrix(expected,
+          predicted)))
+
+
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
@@ -50,6 +66,7 @@ if __name__ == '__main__':
     read_data_again = args.read_data_again
     read_all_data = args.read_all_data
 
-    id, image_names, images = load_data(path_prefix, read_data_again,
+    ids, image_names, images = load_data(path_prefix, read_data_again,
                                         read_all_data)
-    # pdb.set_trace()
+    train_classifier(ids, image_names, images)
+    pdb.set_trace()
