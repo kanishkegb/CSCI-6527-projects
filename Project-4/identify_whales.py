@@ -5,6 +5,7 @@ import argparse
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import pickle
 import pdb
 
 
@@ -35,7 +36,8 @@ def train_classifier(ids, image_names, images):
           ))
     print('Confusion matrix:\n{}'.format(metrics.confusion_matrix(expected,
           predicted)))
-
+    
+    return classifier
 
 if __name__ == '__main__':
 
@@ -68,5 +70,8 @@ if __name__ == '__main__':
 
     ids, image_names, images = load_data(path_prefix, read_data_again,
                                         read_all_data)
-    train_classifier(ids, image_names, images)
-    pdb.set_trace()
+    classifier = train_classifier(ids, image_names, images)
+    
+    with open('trained_classifier.pkl', 'wb') as f:
+        pickle.dump(classifier, f)
+    #pdb.set_trace()
