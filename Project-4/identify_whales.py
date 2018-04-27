@@ -17,7 +17,8 @@ def train_classifier(ids, image_names, images):
     n_samples = len(ids)
     resize_h = 400
     resize_w = 500
-
+    
+    print('Running the classifier...')
     whales = np.zeros((n_samples, resize_h * resize_w * 3))
     i = 0
     for image in images:
@@ -25,11 +26,12 @@ def train_classifier(ids, image_names, images):
         whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
         i += 1
 
-    classifier = svm.SVC(gamma=0.001)
-    classifier.fit(whales[:n_samples // 2], ids[:n_samples // 2])
-
-    expected = ids[n_samples // 2:]
-    predicted = classifier.predict(whales[n_samples // 2:])
+    classifier = svm.SVC(gamma=0.001, verbose=True)
+    classifier.fit(whales, ids)
+    
+    print('Predicting ...')
+    expected = ids[n_samples // 200:]
+    predicted = classifier.predict(whales[n_samples // 200:])
 
     print('Classification report for classifier {}:\n{}\n'.format(
           classifier,  metrics.classification_report(expected, predicted)
