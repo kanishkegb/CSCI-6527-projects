@@ -15,14 +15,16 @@ import pdb
 
 def train_classifier(ids, image_names, images):
     n_samples = len(ids)
-    resize_h = 400
-    resize_w = 500
     
     print('Running the classifier...')
+    resize_h = 100
+    resize_w = 120
+
     whales = np.zeros((n_samples, resize_h * resize_w * 3))
     i = 0
     for image in images:
-        resized_image = cv2.resize(image, (resize_h, resize_w))
+        gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+        resized_image = cv2.resize(gray, (resize_h, resize_w))
         whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
         i += 1
 
@@ -38,7 +40,7 @@ def train_classifier(ids, image_names, images):
           ))
     print('Confusion matrix:\n{}'.format(metrics.confusion_matrix(expected,
           predicted)))
-    
+
     return classifier
 
 if __name__ == '__main__':
@@ -73,7 +75,7 @@ if __name__ == '__main__':
     ids, image_names, images = load_data(path_prefix, read_data_again,
                                         read_all_data)
     classifier = train_classifier(ids, image_names, images)
-    
+
     with open('trained_classifier.pkl', 'wb') as f:
         pickle.dump(classifier, f)
     #pdb.set_trace()
