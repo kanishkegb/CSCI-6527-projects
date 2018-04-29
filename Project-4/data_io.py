@@ -24,9 +24,9 @@ def load_data(path_prefix, read_data_again, read_all_data):
     whale_image_names = data['Image']
     whale_id = data['Id']
     n_samples = len(whale_id)
-
+    
     if read_data_again:
-        print('Saving data into hdf5 ...')
+        print('Saving {} items into hdf5 ...'.format(n_samples))
         with h5py.File('whale_data.hdf5', 'w') as f:
             grp_id = f.create_group('whale_id')
             grp_im_name = f.create_group('image_name')

@@ -20,15 +20,15 @@ def train_classifier(ids, image_names, images):
     resize_h = 100
     resize_w = 120
 
-    whales = np.zeros((n_samples, resize_h * resize_w * 3))
+    whales = np.zeros((n_samples, resize_h * resize_w))
     i = 0
     for image in images:
-        gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
         resized_image = cv2.resize(gray, (resize_h, resize_w))
         whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
         i += 1
 
-    classifier = svm.SVC(gamma=0.001, verbose=True)
+    classifier = svm.SVC(verbose=True, probability=True)
     classifier.fit(whales, ids)
     
     print('Predicting ...')
@@ -41,7 +41,8 @@ def train_classifier(ids, image_names, images):
     print('Confusion matrix:\n{}'.format(metrics.confusion_matrix(expected,
           predicted)))
 
-    return classifier
+    return classifier, whales
+
 
 if __name__ == '__main__':
 
@@ -66,16 +67,28 @@ if __name__ == '__main__':
         help=('Read all data from the downloaded data. By default '
               'this reads only first 100')
     )
+    parser.add_argument(
+        '-t', '--train_data',
+        default=False, action='store_true',
+        help=('Train the classifier')
+    )
 
     args = parser.parse_args()
     path_prefix = args.path
     read_data_again = args.read_data_again
     read_all_data = args.read_all_data
-
-    ids, image_names, images = load_data(path_prefix, read_data_again,
-                                        read_all_data)
-    classifier = train_classifier(ids, image_names, images)
-
-    with open('trained_classifier.pkl', 'wb') as f:
-        pickle.dump(classifier, f)
-    #pdb.set_trace()
+    train_data = args.train_data
+    
+    
+    if train_data:
+        ids, image_names, images = load_data(path_prefix, read_data_again,
+                                             read_all_data)
+        clf, whales = train_classifier(ids, image_names, images)
+        with open('trained_classifier.pkl', 'wb') as f:
+            pickle.dump(clf, f)
+    else:
+        with open('trained_classifier.pkl', 'rb') as f: 
+            clf = pickle.load(f)
+    
+    
+    pdb.set_trace()
