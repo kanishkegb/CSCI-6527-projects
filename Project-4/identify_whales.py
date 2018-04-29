@@ -28,7 +28,7 @@ def train_classifier(ids, image_names, images):
         whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
         i += 1
 
-    classifier = svm.SVC(gamma=0.001, verbose=True)
+    classifier = svm.SVC(verbose=True, probability=True)
     classifier.fit(whales, ids)
     
     print('Predicting ...')
@@ -41,7 +41,8 @@ def train_classifier(ids, image_names, images):
     print('Confusion matrix:\n{}'.format(metrics.confusion_matrix(expected,
           predicted)))
 
-    return classifier
+    return classifier, whales
+
 
 if __name__ == '__main__':
 
@@ -82,12 +83,12 @@ if __name__ == '__main__':
     if train_data:
         ids, image_names, images = load_data(path_prefix, read_data_again,
                                              read_all_data)
-        classifier = train_classifier(ids, image_names, images)
+        clf, whales = train_classifier(ids, image_names, images)
         with open('trained_classifier.pkl', 'wb') as f:
-            pickle.dump(classifier, f)
+            pickle.dump(clf, f)
     else:
         with open('trained_classifier.pkl', 'rb') as f: 
-            classifier = pickle.load(f)
+            clf = pickle.load(f)
     
     
     pdb.set_trace()
