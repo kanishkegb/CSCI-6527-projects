@@ -19,7 +19,9 @@ After centuries of those intense whaling, the whales are still in the recovery s
   <img src="./images/fluke.jpg"  width="300"/>
 </center>
 
-Currently, the identification is done manually. The [Kaggle](https://www.kaggle.com/c/whale-categorization-playground) initiated a project to help automate the whale identification. I thought I would contribute to this project for my final project.
+Currently, the identification is done manually. The [Kaggle](https://www.kaggle.com/c/whale-categorization-playground) initiated a project to help automate the whale identification. The challenging part is the low number imagery from the each type of whale. I thought I would contribute to this project for my final project. Since this is my first machine learning experience, this way, I get to learn machine learning while helping to save thousands of whales all around the world!
+
+
 
 <!-- Names of everyone in your group.
 Introduction (problem –Why, with real‐world applications), and one illustrative example output.
