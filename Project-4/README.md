@@ -4,6 +4,7 @@
 <a name="contents"></a>
 ## Contents
 1. [Introduction](#intro)
+2. [Basic Classifier](#basic_clf)
 
 <a name="intro"></a>
 ## 1. Introduction
@@ -21,7 +22,16 @@ After centuries of those intense whaling, the whales are still in the recovery s
 
 Currently, the identification is done manually. The [Kaggle](https://www.kaggle.com/c/whale-categorization-playground) initiated a project to help automate the whale identification. The challenging part is the low number imagery from the each type of whale. I thought I would contribute to this project for my final project. Since this is my first machine learning experience, this way, I get to learn machine learning while helping to save thousands of whales all around the world!
 
+<a name="basic_clf"></a>
+## 2. Basic Classifier
 
+Basically, Kaggle provides a set of training data and a set of test data. The training data consist of 9000+ manually labeled image of flukes of different whale species and test data has 15,000 unlabeled data.  The objective is to train a classifier using the train data to identify the each fluke in the test data. The predictions can be updated to the Kaggle website where they check it, score the predictions and put the scores in a [leaderboard](https://www.kaggle.com/c/whale-categorization-playground/leaderboard).
+
+Given that this is my first machine learning project, I started small. First this I tried was using a basic classifier to classify data. I used scikit-learn for this project and choose the Support Vector Machine based on their documentation.
+
+<center>
+  <img src="./images/scikit_estimator_map.png"  width="450"/>
+</center>
 
 <!-- Names of everyone in your group.
 Introduction (problem –Why, with real‐world applications), and one illustrative example output.
