@@ -28,7 +28,7 @@ def train_classifier(ids, image_names, images):
         whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
         i += 1
 
-    classifier = svm.SVC(verbose=True, probability=True)
+    classifier = svm.SVC(verbose=True)#, probability=True)
     classifier.fit(whales, ids)
 
     print('Predicting ...')
@@ -79,9 +79,12 @@ if __name__ == '__main__':
     read_all_data = args.read_all_data
     train_data = args.train_data
 
+    skip_new_whales = True
 
     ids, image_names, images = load_data(path_prefix, read_data_again,
-    read_all_data)
+    read_all_data, skip_new_whales)
+
+    pdb.set_trace()
     if train_data:
         clf, whales = train_classifier(ids, image_names, images)
         with open('trained_classifier.pkl', 'wb') as f:
@@ -109,10 +112,10 @@ if __name__ == '__main__':
     for image in images:
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         resized_image = cv2.resize(gray, (resize_h, resize_w))
-        test_whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
+        train_whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
         i += 1
 
-    expected = ids[0:10]
+    expected = ids[0:1]
     predicted = clf.predict(train_whales[:1])
 
     print('Classification report for classifier {}:\n{}\n'.format(

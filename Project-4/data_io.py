@@ -6,7 +6,7 @@ import pandas as pd
 import pdb
 
 
-def load_data(path_prefix, read_data_again, read_all_data):
+def load_data(path_prefix, read_data_again, read_all_data, skip_new_whales):
     '''
     Loads training data from the files provided from Kaggle
 
@@ -14,6 +14,7 @@ def load_data(path_prefix, read_data_again, read_all_data):
         path_prefix: string - path to the data from Kaggle
         read_data_again: bool - whether to read data from the file again
         read_all_data: bool -  whether to read data all data
+        skip_new_whales: bool - whether to skip the 'new_whale' IDs
     Returns:
         whale_id: list - IDs for each whale image
         whale_image_names: list - name of the image
@@ -57,6 +58,8 @@ def load_data(path_prefix, read_data_again, read_all_data):
     with h5py.File('whale_data.hdf5', 'r') as f:
         i = 0
         for key in f['whale_images'].keys():
+            if skip_new_whales and f['whale_id'][key].value=='new_whale':
+                continue
             whale_images.append(f['whale_images'][key].value)
             i += 1
             if not read_all_data and i > max_data:
@@ -64,6 +67,8 @@ def load_data(path_prefix, read_data_again, read_all_data):
 
         i = 0
         for key in f['image_name'].keys():
+            if skip_new_whales and f['whale_id'][key].value=='new_whale':
+                continue
             whale_image_names.append(f['image_name'][key].value)
             i += 1
             if not read_all_data and i > max_data:
@@ -71,6 +76,8 @@ def load_data(path_prefix, read_data_again, read_all_data):
 
         i = 0
         for key in f['whale_id'].keys():
+            if skip_new_whales and f['whale_id'][key].value=='new_whale':
+                continue
             whale_id.append(f['whale_id'][key].value)
             i += 1
             if not read_all_data and i > max_data:
