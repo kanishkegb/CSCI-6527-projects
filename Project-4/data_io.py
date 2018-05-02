@@ -94,8 +94,6 @@ def load_test_data(path_prefix, read_data_again, read_all_data):
         whale_images: list - list of NxMx3 arrays for each whale image
     '''
 
-    print('Loading test data ...')
-
     if read_data_again:
         print('Saving data into hdf5 ...')
         with h5py.File('whale_test_data.hdf5', 'w') as f:
@@ -111,41 +109,37 @@ def load_test_data(path_prefix, read_data_again, read_all_data):
 
         print('Saving {} data into hdf5 completed.'.format(i))
 
-    # whale_images = []
-    # whale_image_names = []
-    # whale_id = []
-    # max_data = 100
-    #
-    # if read_all_data:
-    #     print('Reading all test data from hdf5 file ...')
-    # else:
-    #     print('Reading first {} test data from hdf5 file ...'.format(max_data))
-    #
-    # with h5py.File('whale_test_data.hdf5', 'r') as f:
-    #     i = 0
-    #     for key in f['whale_images'].keys():
-    #         whale_images.append(f['whale_images'][key].value)
-    #         i += 1
-    #         if not read_all_data and i > max_data:
-    #             break
-    #
-    #     i = 0
-    #     for key in f['image_name'].keys():
-    #         whale_image_names.append(f['image_name'][key].value)
-    #         i += 1
-    #         if not read_all_data and i > max_data:
-    #             break
-    #
-    #     i = 0
-    #     for key in f['whale_id'].keys():
-    #         whale_id.append(f['whale_id'][key].value)
-    #         i += 1
-    #         if not read_all_data and i > max_data:
-    #             break
-    #
-    # print('Reading data completed.')
 
-    return whale_id, whale_image_names, whale_images
+    print('Loading test data ...')
+    whale_images = []
+    whale_image_names = []
+
+    max_data = 100
+
+    if read_all_data:
+        print('Reading all test data from hdf5 file ...')
+    else:
+        print('Reading first {} test data from hdf5 file ...'.format(max_data))
+
+    with h5py.File('whale_test_data.hdf5', 'r') as f:
+        i = 0
+        for key in f['test_images'].keys():
+            whale_images.append(f['test_images'][key].value)
+            i += 1
+            if not read_all_data and i > max_data:
+                break
+
+        i = 0
+        for key in f['image_name'].keys():
+            whale_image_names.append(f['image_name'][key].value)
+            i += 1
+            if not read_all_data and i > max_data:
+                break
+
+
+    print('Reading data completed.')
+
+    return whale_image_names, whale_images
 
 
 if __name__ == '__main__':
@@ -155,9 +149,12 @@ if __name__ == '__main__':
     # id, image_names, images = load_data(path_prefix, read_data_again,
     #                                     read_all_data)
     path_prefix = '../../Whale_ID/'
-    read_data_again = True
+    read_data_again = False
     read_all_data = False
-    id, image_names, images = load_test_data(path_prefix, read_data_again,
-                                        read_all_data)
+    image_names, images = load_test_data(path_prefix, read_data_again,
+                                         read_all_data)
 
     pdb.set_trace()
+    # plt.imshow(cv2.cvtColor(images[0], cv2.COLOR_BGR2RGB))
+    # plt.title('Whale: {}, ID: {}'.format(image_name, id))
+    # plt.show()
