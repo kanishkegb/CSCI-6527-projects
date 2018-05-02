@@ -31,6 +31,7 @@ classifier.fit(data[:n_samples // 2], digits.target[:n_samples // 2])
 
 # Now predict the value of the digit on the second half:
 expected = digits.target[n_samples // 2:]
+import pdb; pdb.set_trace()
 predicted = classifier.predict(data[n_samples // 2:])
 
 print("Classification report for classifier %s:\n%s\n"

@@ -1,5 +1,5 @@
 from sklearn import svm, metrics
-from data_io import load_data
+from data_io import load_data, load_test_data
 
 import argparse
 import cv2
@@ -79,9 +79,9 @@ if __name__ == '__main__':
     read_all_data = args.read_all_data
     train_data = args.train_data
 
+
     ids, image_names, images = load_data(path_prefix, read_data_again,
     read_all_data)
-
     if train_data:
         clf, whales = train_classifier(ids, image_names, images)
         with open('trained_classifier.pkl', 'wb') as f:
@@ -90,5 +90,35 @@ if __name__ == '__main__':
         with open('trained_classifier.pkl', 'rb') as f:
             clf = pickle.load(f)
 
+    test_image_names, test_images = load_test_data(path_prefix, read_data_again,
+                                                   read_all_data)
+    print('Predicting ...')
+    n_samples= len(test_images)
+    resize_h = 100
+    resize_w = 120
+    test_whales = np.zeros((n_samples, resize_h * resize_w))
+    i = 0
+    for image in test_images:
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        resized_image = cv2.resize(gray, (resize_h, resize_w))
+        test_whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
+        i += 1
+
+    i = 0
+    train_whales = np.zeros((len(ids), resize_h * resize_w))
+    for image in images:
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        resized_image = cv2.resize(gray, (resize_h, resize_w))
+        test_whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
+        i += 1
+
+    expected = ids[0:10]
+    predicted = clf.predict(train_whales[:1])
+
+    print('Classification report for classifier {}:\n{}\n'.format(
+          clf,  metrics.classification_report(expected, predicted)
+          ))
+    print('Confusion matrix:\n{}'.format(metrics.confusion_matrix(expected,
+          predicted)))
 
     pdb.set_trace()
