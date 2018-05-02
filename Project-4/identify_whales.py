@@ -15,7 +15,7 @@ import pdb
 
 def train_classifier(ids, image_names, images):
     n_samples = len(ids)
-    
+
     print('Running the classifier...')
     resize_h = 100
     resize_w = 120
@@ -30,7 +30,7 @@ def train_classifier(ids, image_names, images):
 
     classifier = svm.SVC(verbose=True, probability=True)
     classifier.fit(whales, ids)
-    
+
     print('Predicting ...')
     expected = ids[n_samples // 200:]
     predicted = classifier.predict(whales[n_samples // 200:])
@@ -78,17 +78,17 @@ if __name__ == '__main__':
     read_data_again = args.read_data_again
     read_all_data = args.read_all_data
     train_data = args.train_data
-    
-    
+
+    ids, image_names, images = load_data(path_prefix, read_data_again,
+    read_all_data)
+
     if train_data:
-        ids, image_names, images = load_data(path_prefix, read_data_again,
-                                             read_all_data)
         clf, whales = train_classifier(ids, image_names, images)
         with open('trained_classifier.pkl', 'wb') as f:
             pickle.dump(clf, f)
     else:
-        with open('trained_classifier.pkl', 'rb') as f: 
+        with open('trained_classifier.pkl', 'rb') as f:
             clf = pickle.load(f)
-    
-    
+
+
     pdb.set_trace()
