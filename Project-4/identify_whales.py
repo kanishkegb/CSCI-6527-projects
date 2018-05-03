@@ -123,5 +123,11 @@ if __name__ == '__main__':
           ))
     print('Confusion matrix:\n{}'.format(metrics.confusion_matrix(expected,
           predicted)))
+    
+    predicted = clf.predict(test_whales) 
+    with open('predicted_test_whales.pkl', 'wb') as f:
+        pickle.dump(predicted, f)
+        pickle.dump(test_image_names, f)
+
 
     pdb.set_trace()
