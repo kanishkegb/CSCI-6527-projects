@@ -42,7 +42,23 @@ Your Implementation and Analysis (What you do, with images, tables, and numbers)
 Your Conclusions (Itemized conclusions, observations and discussions)  -->
 
 ## Running the code
-### Creating the virtual environment
+
+ A zip file can be downloaded here. The images are uploaded to a Google Drive folder to reduce the repository size. Unzip the zip file and move `Whale_ID` directory containing all the subdirectories and files must be copied to the parent directory of this repository. The file structure should be like below:
+ ```
+ + parent_dir (this could be any directory)
+    + CSCI-6527-projects
+      - cropping
+      - data
+      - ...
+    + Whale_ID
+      - test
+      - train
+      - sample_submission.csv
+      - ...
+ ```
+
+### Cropping
+#### Creating the virtual environment
 1. Create a virtual environment
   ```
   conda update -n base conda  # optional
@@ -75,4 +91,26 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
   python object_detection/builders/model_builder_test.py
   ```
 
-### Training
+#### Annotating Data
+**NOTE**: This section is not required if the same data is used. This section as added solely for the completeness of the documentation.
+
+1. Install and use [LabelImg](https://github.com/tzutalin/labelImg) to open each whale figures in train images and to annotate the fluke of the whale. This will create a list of xml files (the xml files in `cropping\annotations\xml`) were generated using this method. Annotating around 200 images is fine. Of course more images makes your predictions more accurate.
+
+2. Then, convert these data to CSV format so that TF can understand them.
+  ```
+  python xml_to_csv.py
+  ```
+  This will generate the `whale_flukes.csv` file inside `cropping\annotations`. Then, copy the CSV file to the `data` directory and rename the file to `train_labels.csv`. Move around 20 entries from that file to a new file named `test_labels.csv`. Remember to copy the headers row to the new CSV file.
+3. Duplicate the images that were annotated to a different directory. The below script will automate that process one you create the `whale_flukes.csv`.
+  ```
+  python duplicate_cropped_images.py
+  ```
+
+#### Training
+1. Clone the [TF models](https://github.com/tensorflow/models) to a ***different*** directory
+  ```
+  git clone git@github.com:tensorflow/models.git
+  ```
+2. Cloning the models repo will create a directory called "models". Copy below files to the `models\research` directory.
+  1. all the directories and the files in the `Project-4\cropping` directory.
+  2.

@@ -27,7 +27,7 @@ def xml_to_csv(path):
 
 if __name__ == '__main__':
     print('Converting xml to csv ...')
-    image_dir = 'xml'
+    image_dir = 'annotations/xml'
     xml_df = xml_to_csv(image_dir)
-    xml_df.to_csv('whale_cropped.csv', index=None)
+    xml_df.to_csv('annotations/whales_flukes.csv', index=None)
     print('Conversion completed.')

@@ -9,7 +9,8 @@ def copy_cropped_images(file_name):
     df = pd.read_csv(file_name)
     image_names = df['filename']
 
-    directory = os.path.dirname('../../../Whale_ID/crop_train')
+    directory = os.path.dirname(os.path.join('..', '..', '..', 'Whale_ID',
+                                'crop_train'))
     if not os.path.exists(directory):
         os.makedirs(directory)
 
@@ -27,5 +28,5 @@ if __name__ == '__main__':
 
     import pdb
 
-    file_name = 'whale_cropped.csv'
+    file_name = 'annotations/whale_cropped.csv'
     copy_cropped_images(file_name)
