@@ -30,8 +30,9 @@ Basically, Kaggle provides a set of training data and a set of test data. The tr
 Given that this is my first machine learning project, I started small. First this I tried was using a basic classifier to classify data. I used scikit-learn for this project and choose the Support Vector Machine based on their documentation.
 
 <center>
-  <img src="./images/scikit_estimator_map.png"  width="450"/>
+  <img src="./images/scikit_estimator_map.png"  width="650"/>
 </center>
+
 
 <!-- Names of everyone in your group.
 Introduction (problem –Why, with real‐world applications), and one illustrative example output.
@@ -40,8 +41,15 @@ Your Approach (How you are going to do it, with algorithms, equations, figures)
 Your Implementation and Analysis (What you do, with images, tables, and numbers)
 Your Conclusions (Itemized conclusions, observations and discussions)  -->
 
-## Dependencies
-1. HDF5 for saving data
+## Running the code
+1. Create a virtual environment
   ```
+  conda update -n base conda  # optional
+  conda create --name ML
+  conda activate ML
+  conda install numpy
+  conda install scikit-learn
+  conda install cython
+  pip install --ignore-installed --upgrade tensorflow
   conda install h5py
   ```
