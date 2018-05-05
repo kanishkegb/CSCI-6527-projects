@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>007c3603.jpg</filename>
+	<path>C:\Users\Kanishke\Documents\Whale_ID\train\007c3603.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>822</width>
+		<height>471</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>fluke</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>13</xmin>
+			<ymin>72</ymin>
+			<xmax>822</xmax>
+			<ymax>365</ymax>
+		</bndbox>
+	</object>
+</annotation>

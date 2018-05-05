@@ -42,6 +42,7 @@ Your Implementation and Analysis (What you do, with images, tables, and numbers)
 Your Conclusions (Itemized conclusions, observations and discussions)  -->
 
 ## Running the code
+### Creating the virtual environment
 1. Create a virtual environment
   ```
   conda update -n base conda  # optional
@@ -51,5 +52,27 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
   conda install scikit-learn
   conda install cython
   pip install --ignore-installed --upgrade tensorflow
+  sudo apt-get install protobuf-compiler python-pil python-lxml
+  conda install pillow
+  conda install matplotlib
+  conda install pandas
   conda install h5py
   ```
+2. Dependencies for object detection model
+  ```
+
+  ```
+3. Clone and configure object detection API from TF
+  ```
+  git clone git@github.com:tensorflow/models.git
+  cd models/research/
+  protoc object_detection/protos/*.proto --python_out=.
+  export PYTHONPATH=$PYTHONPATH:`pwd`:`pwd`/slim
+  # on Windows computers, you need to manually add these paths to the system variables
+  ```
+4. Test the installation
+  ```
+  python object_detection/builders/model_builder_test.py
+  ```
+
+### Training
