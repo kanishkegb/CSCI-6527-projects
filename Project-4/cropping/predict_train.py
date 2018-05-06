@@ -49,7 +49,7 @@ def load_image_into_numpy_array(image):
       (im_height, im_width, 3)).astype(np.uint8)
 
 # Detection
-PATH_TO_TEST_IMAGES_DIR = os.path.join('..', '..', 'Whale_ID', 'test')
+PATH_TO_TEST_IMAGES_DIR = os.path.join('..', '..', 'Whale_ID', 'train')
 TEST_IMAGE_PATHS = []
 for im in os.listdir(PATH_TO_TEST_IMAGES_DIR):
     if im.endswith('.jpg'):
@@ -132,12 +132,12 @@ for image_path in TEST_IMAGE_PATHS:
   #import pdb
   #pdb.set_trace()
 
-  Image.fromarray(image_np).save('predicted_images/{}'.format(image_path[-12:]),
+  Image.fromarray(image_np).save('predicted_train_images/{}'.format(image_path[-12:]),
     'JPEG', quality=80, optimize=True, progressive=True)
 
   if output_dict['detection_scores'][0] > 0.5:
     (h, w) = image.size
     box = output_dict['detection_boxes'][0,:]
-    cropped_im = image.crop((int(h*box[1]), int(w*box[0]), int(h*box[3]), int(w*box[2])))    
-    cropped_im.save('cropped_images/{}'.format(image_path[-12:]), 'JPEG',
+    cropped_im = image.crop((int(h*box[1]), int(w*box[0]), int(h*box[3]), int(w*box[2])))
+    cropped_im.save('cropped_train_images/{}'.format(image_path[-12:]), 'JPEG',
       quality=80, optimize=True, progressive=True)
