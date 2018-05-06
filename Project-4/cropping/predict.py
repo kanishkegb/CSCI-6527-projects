@@ -51,13 +51,9 @@ def load_image_into_numpy_array(image):
 # Detection
 PATH_TO_TEST_IMAGES_DIR = os.path.join('..', '..', 'Whale_ID', 'test')
 TEST_IMAGE_PATHS = []
-count = 0
 for im in os.listdir(PATH_TO_TEST_IMAGES_DIR):
     if im.endswith('.jpg'):
         TEST_IMAGE_PATHS.append(os.path.join(PATH_TO_TEST_IMAGES_DIR, im))
-        count += 1
-        if count > 10:
-            break
 
 # Size, in inches, of the output images.
 IMAGE_SIZE = (12, 8)
@@ -108,8 +104,11 @@ def run_inference_for_single_image(image, graph):
         output_dict['detection_masks'] = output_dict['detection_masks'][0]
   return output_dict
 
+total_images = len(TEST_IMAGE_PATHS)
+i = 0
 for image_path in TEST_IMAGE_PATHS:
-  print(image_path)
+  i += 1
+  print('Image {} of {}: {}'.format(i, total_images, image_path))
   image = Image.open(image_path).convert('RGB')
   # the array based representation of the image will be used later in order to prepare the
   # result image with boxes and labels on it.
