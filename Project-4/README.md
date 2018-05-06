@@ -75,8 +75,13 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
   conda install pandas
   conda install h5py
   ```
-3. Clone and configure object detection API from TF
+2. Clone this repository
   ```
+  git clone git@github.com:kanishkegb/CSCI-6527-projects.git
+  ```
+3. Clone and configure object detection API from TF (do this in a ***different*** directory)
+  ```
+  cd /to/a/different/directory
   git clone git@github.com:tensorflow/models.git
   cd models/research/
   protoc object_detection/protos/*.proto --python_out=.
@@ -104,7 +109,7 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
   ```
 
 #### Training
-1. Clone the [TF models](https://github.com/tensorflow/models) to a ***different*** directory
+1. Clone the [TF models](https://github.com/tensorflow/models) to a ***different*** directory (this is same as the step 3 in the creating virtual environment section)
   ```
   git clone git@github.com:tensorflow/models.git
   ```
@@ -122,7 +127,12 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
   cd models\research
   mkdir fluke_crop
   ```
-5. Train:
+5. Generate TF train and test records:
   ```
-  python research/object_detection/train.py --logtostderr --pipeline_config_path=training/ssd_mobilenet_v1_pets.config --train_dir=fluke_crop/
+  python generate_tfrecord.py --csv_input=data/train_labels.csv  --output_path=data/train.record
+  python generate_tfrecord.py --csv_input=data/test_labels.csv  --output_path=data/test.record
+  ```
+6. Train:
+  ```
+  python object_detection/train.py --logtostderr --pipeline_config_path=training/ssd_mobilenet_v1_pets.config --train_dir=fluke_crop/
   ```
