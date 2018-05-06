@@ -7,7 +7,8 @@
 2. [Basic Classifier with Scikit-Learn](#basic_clf)
 3. [Image Cropper with TensorFlow](#cropping)
 4. [Combining Classifier with Cropped Images](#combined)
-4. [Running the Code](#running)
+5. [Conclusions and Future Improvements](#summary)
+6. [Running the Code](#running)
 
 I am completely new to machine learning. In fact this is my first experiment with machine learning. So I decided to do this on my own so that I can learn everything. Further, after my initial research, I found both [scikit-learn](http://scikit-learn.org/) and [TensorFlow](https://www.tensorflow.org/). So I decided to use this project to learn both of these.
 
@@ -80,6 +81,24 @@ Your Implementation and Analysis (What you do, with images, tables, and numbers)
 Your Conclusions (Itemized conclusions, observations and discussions)  -->
 
 [[Back to top](#contents)]
+<a name="summary"></a>
+## Conclusions and Future Improvements
+Basically, I used this project as my "Machine Learning 101" project. I managed to do following things during the last few weeks:
+1. Configure and trained a support vector machine using scikit-learn to classify the whales based on their fluke images
+2. Improve the accuracy of the classifier by training a TensorFlow object detection model to detect the fluke inside the image and crop out the surroundings
+
+Following things were planned to do, but could not be achieved before the deadline.
+1. Developing a segmentation model based on TensorFlow to extract only the fluke from the background
+<center>
+  <img src="./images/segment_original.jpg"  width="350"/>
+  <img src="./images/segment.png"  width="350"/>
+</center>
+2. Do a perspective/rotations transformation on possible extracted whale fluke such that each fluke can be viewed as an image take from the same angle.
+
+Doing the suggested changes may improve the accuracy of the predictions more.
+
+
+[[Back to top](#contents)]
 <a name="combined"></a>
 ## Combining Classifier with Cropped Images
 As described previously, the basic classifier did perform poorly. Therefore, a TensorFlow model for cropping the image was developed. I ran this fluke detection and cropping machine learning model on both training and testing data first. The classifier was then run on the cropped data. The results show that the cropping improved the accuracy of the predictions.
@@ -103,7 +122,7 @@ The images are uploaded to a Google Drive folder to reduce the repository size. 
 - ...
 ```
 
-### Baic Classifier
+### Basic Classifier
 Simply run the below code to run the simple classifier with scikit-learn.
 ```
 python identify_learn.py -a -r -t
