@@ -51,9 +51,13 @@ def load_image_into_numpy_array(image):
 # Detection
 PATH_TO_TEST_IMAGES_DIR = os.path.join('..', '..', 'Whale_ID', 'test')
 TEST_IMAGE_PATHS = []
+count = 0
 for im in os.listdir(PATH_TO_TEST_IMAGES_DIR):
     if im.endswith('.jpg'):
         TEST_IMAGE_PATHS.append(os.path.join(PATH_TO_TEST_IMAGES_DIR, im))
+        count += 1
+        if count > 10:
+            break
 
 # Size, in inches, of the output images.
 IMAGE_SIZE = (12, 8)
@@ -126,4 +130,15 @@ for image_path in TEST_IMAGE_PATHS:
       line_thickness=8)
   #plt.figure(figsize=IMAGE_SIZE)
   #plt.imshow(image_np)
-  Image.fromarray(image_np).save("predicted_{}".format(image_path), "JPEG", quality=80, optimize=True, progressive=True)
+  #import pdb
+  #pdb.set_trace()
+
+  Image.fromarray(image_np).save('predicted_images/{}'.format(image_path[-12:]),
+    'JPEG', quality=80, optimize=True, progressive=True)
+
+  if output_dict['detection_scores'][0] > 0.5:
+    (h, w) = image.size
+    box = output_dict['detection_boxes'][0,:]
+    cropped_im = image.crop((int(h*box[1]), int(w*box[0]), int(h*box[3]), int(w*box[2])))    
+    cropped_im.save('cropped_images/{}'.format(image_path[-12:]), 'JPEG',
+      quality=80, optimize=True, progressive=True)

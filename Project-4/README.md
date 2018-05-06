@@ -152,6 +152,7 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
   cd models/research/
   mkdir test_predicted_images  # for testing predictions
   mkdir predicted_images  # for final predictions
+  mkdir cropped_images  # for cropped image
   ```
 3. Test the predictions first. For this, first copy the file `test_predict.py` to `models/research/object_detection` directory. Then run the following commands.
   ```
