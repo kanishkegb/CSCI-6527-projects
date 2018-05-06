@@ -150,12 +150,18 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
 2. Make a directory to save the predicted images.
   ```
   cd models/research/
-  mkdir predicted_images
+  mkdir test_predicted_images  # for testing predictions
+  mkdir predicted_images  # for final predictions
   ```
-3. Test the predictions first. For this, first copy the file `predict_test` to `models/research/object_detection` directory. Then run the following commands.
+3. Test the predictions first. For this, first copy the file `test_predict.py` to `models/research/object_detection` directory. Then run the following commands.
   ```
   cd models/research/object_detection
-  python predict_test.py
+  python test_predict.py
+  ```
+  This will generate the predicted images inside the `models/research/test_predicted_images` directory. If this looks good, run the below commands to crop the real test data.
+4. Predict the test images in `Whale_ID`. For this, first copy the file `predict.py` to `models/research/object_detection` directory. Then run the following commands.
+  ```
+  cd models/research/object_detection
+  python predict.py
   ```
   This will generate the predicted images inside the `models/research/predicted_images` directory. If this looks good, run the below commands to crop the real test data.
-4. 

@@ -125,4 +125,5 @@ for image_path in TEST_IMAGE_PATHS:
       line_thickness=8)
   #plt.figure(figsize=IMAGE_SIZE)
   #plt.imshow(image_np)
-  Image.fromarray(image_np).save("predicted_{}".format(image_path), "JPEG", quality=80, optimize=True, progressive=True)
+  Image.fromarray(image_np).save('test_predicted_{}'.format(image_path),
+    'JPEG', quality=80, optimize=True, progressive=True)
