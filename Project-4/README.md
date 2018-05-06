@@ -136,3 +136,26 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
   ```
   python object_detection/train.py --logtostderr --pipeline_config_path=training/ssd_mobilenet_v1_pets.config --train_dir=fluke_crop/
   ```
+
+#### Predicting
+1. Export the trained model as a protocol buffer. Make sure to replace `<checkpoint>` with the latest checkpoint available in the `models/research/fluke_crop` directory. Ex: `--trained_checkpoint_prefix fluke_crop/model.ckpt-12313`
+  ```
+  # cd models/research/
+  python object_detection/export_inference_graph.py \
+   --input_type image_tensor \
+   --pipeline_config_path training/ssd_mobilenet_v1_pets.config \
+   --trained_checkpoint_prefix fluke_crop/model.ckpt-<checkpoint> \
+   --output_directory output_inference_graph.pb
+  ```
+2. Make a directory to save the predicted images.
+  ```
+  cd models/research/
+  mkdir predicted_images
+  ```
+3. Test the predictions first. For this, first copy the file `predict_test` to `models/research/object_detection` directory. Then run the following commands.
+  ```
+  cd models/research/object_detection
+  python predict_test.py
+  ```
+  This will generate the predicted images inside the `models/research/predicted_images` directory. If this looks good, run the below commands to crop the real test data.
+4. 
