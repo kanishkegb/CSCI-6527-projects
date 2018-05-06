@@ -43,7 +43,8 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
 
 ## Running the code
 
- A zip file can be downloaded here. The images are uploaded to a Google Drive folder to reduce the repository size. Unzip the zip file and move `Whale_ID` directory containing all the subdirectories and files must be copied to the parent directory of this repository. The file structure should be like below:
+ A zip file can be downloaded [here](). <!-- TODO: update the link -->
+ The images are uploaded to a Google Drive folder to reduce the repository size. Unzip the zip file and move `Whale_ID` directory containing all the subdirectories and files must be copied to the parent directory of this repository. The file structure should be like below:
  ```
  + parent_dir (this could be any directory)
     + CSCI-6527-projects
@@ -74,10 +75,6 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
   conda install pandas
   conda install h5py
   ```
-2. Dependencies for object detection model
-  ```
-
-  ```
 3. Clone and configure object detection API from TF
   ```
   git clone git@github.com:tensorflow/models.git
@@ -101,7 +98,7 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
   python xml_to_csv.py
   ```
   This will generate the `whale_flukes.csv` file inside `cropping\annotations`. Then, copy the CSV file to the `data` directory and rename the file to `train_labels.csv`. Move around 20 entries from that file to a new file named `test_labels.csv`. Remember to copy the headers row to the new CSV file.
-3. Duplicate the images that were annotated to a different directory. The below script will automate that process one you create the `whale_flukes.csv`.
+3. Duplicate the images that were annotated to a different directory. The below script will automate that process once you create the `whale_flukes.csv`.
   ```
   python duplicate_cropped_images.py
   ```
@@ -112,5 +109,20 @@ Your Conclusions (Itemized conclusions, observations and discussions)  -->
   git clone git@github.com:tensorflow/models.git
   ```
 2. Cloning the models repo will create a directory called "models". Copy below files to the `models\research` directory.
-  1. all the directories and the files in the `Project-4\cropping` directory.
-  2.
+  1. all the sub directories and the files in the `Project-4\cropping` directory (everything inside, not the `cropping` directory).
+  2. `crop_train` directory inside `Whale_ID` directory, and make sure to rename `crop_train` to `images`
+3. Download and copy a pre-trained for object detection model:
+  ```
+  wget http://download.tensorflow.org/models/object_detection/ssd_mobilenet_v1_coco_11_06_2017.tar.gz
+  tar -xvzf ssd_mobilenet_v1_coco_11_06_2017.tar.gz
+  ```
+  Copy all the files inside the unzipped directory to `models\research\data`
+4. Create a directory to save data
+  ```
+  cd models\research
+  mkdir fluke_crop
+  ```
+5. Train:
+  ```
+  python research/object_detection/train.py --logtostderr --pipeline_config_path=training/ssd_mobilenet_v1_pets.config --train_dir=fluke_crop/
+  ```
