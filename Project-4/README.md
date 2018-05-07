@@ -52,7 +52,7 @@ Then I ran the SVM classifier with raw data, without doing any manipulations to 
 The Kaggle website scores the predictions submitted by the contesters. Score ranges between 0.0 and 1.0 where 1.0 is the highest score one can achiever. This submission scored a whopping 0.00550 :grinning:! So I had to some improvements.
 
 <center>
-  <img src="./images/submission1.png"  width="450"/>
+  <img src="./images/submission1.png"  width="650"/>
 </center>
 
 [[Back to top](#contents)]
@@ -83,10 +83,10 @@ Instructions for running the TensorFlow model can be found in [Running the code]
 [[Back to top](#contents)]
 <a name="combined"></a>
 ## Combining Classifier with Cropped Images
-As described previously, the basic classifier did perform poorly. Therefore, a TensorFlow model for cropping the image was developed. I ran this fluke detection and cropping machine learning model on both training and testing data first. The classifier was then run on the cropped data. The results show that the cropping improved the accuracy of the predictions. I scored 0.10121 ! :joy:
+As described previously, the basic classifier did perform poorly. Therefore, a TensorFlow model for cropping the image was developed. I ran this fluke detection and cropping machine learning model on both training and testing data first. The classifier was then run on the cropped data. The results show that the cropping improved the accuracy of the predictions. I scored 0.10121 ! :muscle:
 
 <center>
-<img src="./images/submission2.png"  width="450"/>
+<img src="./images/submission2.png"  width="650"/>
 </center>
 
 
@@ -119,15 +119,15 @@ A zip file can be downloaded [here](). <!-- TODO: update the link -->
 The images are uploaded to a Google Drive folder to reduce the repository size. Unzip the zip file and move `Whale_ID` directory containing all the subdirectories and files must be copied to the parent directory of this repository. The file structure should be like below:
 ```
 + parent_dir (this could be any directory)
-+ CSCI-6527-projects
-- cropping
-- data
-- ...
-+ Whale_ID
-- test
-- train
-- sample_submission.csv
-- ...
+    + CSCI-6527-projects
+        - cropping
+        - data
+        - ...
+    + Whale_ID
+        - test
+        - train
+        - sample_submission.csv
+        - ...
 ```
 
 ### Basic Classifier
