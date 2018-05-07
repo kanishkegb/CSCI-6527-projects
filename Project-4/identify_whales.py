@@ -5,6 +5,7 @@ import argparse
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 import pickle
 import pdb
 
@@ -123,8 +124,8 @@ if __name__ == '__main__':
           ))
     print('Confusion matrix:\n{}'.format(metrics.confusion_matrix(expected,
           predicted)))
-    
-    predicted = clf.predict(test_whales) 
+
+    predicted = clf.predict(test_whales)
     with open('predicted_test_whales.pkl', 'wb') as f:
         pickle.dump(predicted, f)
         pickle.dump(test_image_names, f)

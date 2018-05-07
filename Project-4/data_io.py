@@ -261,13 +261,13 @@ def load_cropped_test_data(path_prefix, read_data_again, read_all_data):
 
     if read_data_again:
         print('Saving data into hdf5 ...')
-        with h5py.File('whale_test_data.hdf5', 'w') as f:
+        with h5py.File('cropped_test_data.hdf5', 'w') as f:
             grp_im_name = f.create_group('image_name')
             grp_im = f.create_group('test_images')
             i = 0
-            for im in os.listdir('{}test/'.format(path_prefix)):
+            for im in os.listdir('cropped_test_images'):
                 if im.endswith('.jpg'):
-                    image = cv2.imread('{}test/{}'.format(path_prefix, im))
+                    image = cv2.imread(os.path.join('cropped_test_images', im))
                     grp_im.create_dataset('{}'.format(i), data=image)
                     grp_im_name.create_dataset('{}'.format(i), data=im)
                     i += 1
@@ -286,7 +286,7 @@ def load_cropped_test_data(path_prefix, read_data_again, read_all_data):
     else:
         print('Reading first {} test data from hdf5 file ...'.format(max_data))
 
-    with h5py.File('whale_test_data.hdf5', 'r') as f:
+    with h5py.File('cropped_test_data.hdf5', 'r') as f:
         i = 0
         for key in f['test_images'].keys():
             whale_images.append(f['test_images'][key].value)
@@ -323,8 +323,10 @@ if __name__ == '__main__':
     read_data_again = True
     read_all_data = True
     skip_new_whales = False
-    whale_id, whale_image_names, whale_images = load_cropped_train_data(path_prefix,
-        read_data_again, read_all_data, skip_new_whales)
+    # whale_id, whale_image_names, whale_images = load_cropped_train_data(path_prefix,
+    #     read_data_again, read_all_data, skip_new_whales)
+    whale_image_names, whale_images = load_cropped_test_data(path_prefix,
+        read_data_again, read_all_data)
 
     pdb.set_trace()
     # plt.imshow(cv2.cvtColor(images[0], cv2.COLOR_BGR2RGB))
