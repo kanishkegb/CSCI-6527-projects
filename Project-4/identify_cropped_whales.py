@@ -29,7 +29,7 @@ def train_classifier(ids, image_names, images):
         resized_image = cv2.resize(gray, (resize_h, resize_w))
         whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
         i += 1
-
+    psb.set_trace()
     classifier = svm.SVC(verbose=True)#, probability=True)
     classifier.fit(whales, ids)
 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     ids, image_names, images = load_cropped_train_data(path_prefix,
         read_data_again, read_all_data, skip_new_whales)
 
-    # pdb.set_trace()
+    pdb.set_trace()
     if train_data:
         clf, whales = train_classifier(ids, image_names, images)
         with open('trained_classifier_cropped.pkl', 'wb') as f:
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     print('Added {} new_whales'.format(added_count))
     # pdb.set_trace()
 
-    out_data = {'id':predicted_list, 'image':test_image_names}
+    out_data = {'Image':test_image_names, 'Id':predicted_list}
     df = pd.DataFrame(data=out_data)
-    df.to_csv('predictions.csv', index=False)
+    df.to_csv('predictions.csv', index=False, columns=['Image', 'Id'])
     pdb.set_trace()

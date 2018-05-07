@@ -130,7 +130,7 @@ if __name__ == '__main__':
         pickle.dump(predicted, f)
         pickle.dump(test_image_names, f)
 
-    out_data = {'id':predicted, 'image':test_image_names}
+    out_data = {'Id':predicted, 'Image':test_image_names}
     df = pd.DataFrame(data=out_data)
-    df.to_csv('predictions.csv', index=False)
+    df.to_csv('predictions.csv', index=False, columns=['Image', 'Id'])
     pdb.set_trace()
