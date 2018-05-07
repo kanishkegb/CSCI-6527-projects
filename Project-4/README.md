@@ -49,6 +49,12 @@ Then I ran the SVM classifier with raw data, without doing any manipulations to 
   <img src="./images/fluke3.jpg"  width="350"/>
 </center>
 
+The Kaggle website scores the predictions submitted by the contesters. Score ranges between 0.0 and 1.0 where 1.0 is the highest score one can achiever. This submission scored a whopping 0.00550 :grinning:! So I had to some improvements.
+
+<center>
+  <img src="./images/submission1.png"  width="450"/>
+</center>
+
 [[Back to top](#contents)]
 <a name="cropping"></a>
 ## Image Cropper with TensorFlow
@@ -73,12 +79,16 @@ To reduce the background noise and to make it easier for the classifier to learn
 
 Instructions for running the TensorFlow model can be found in [Running the code](#running).
 
-<!-- Names of everyone in your group.
-Introduction (problem –Why, with real‐world applications), and one illustrative example output.
-Related Work (What has been done, with a few references)
-Your Approach (How you are going to do it, with algorithms, equations, figures)
-Your Implementation and Analysis (What you do, with images, tables, and numbers)
-Your Conclusions (Itemized conclusions, observations and discussions)  -->
+
+[[Back to top](#contents)]
+<a name="combined"></a>
+## Combining Classifier with Cropped Images
+As described previously, the basic classifier did perform poorly. Therefore, a TensorFlow model for cropping the image was developed. I ran this fluke detection and cropping machine learning model on both training and testing data first. The classifier was then run on the cropped data. The results show that the cropping improved the accuracy of the predictions. I scored 0.10121 ! :joy:
+
+<center>
+<img src="./images/submission2.png"  width="450"/>
+</center>
+
 
 [[Back to top](#contents)]
 <a name="summary"></a>
@@ -87,21 +97,19 @@ Basically, I used this project as my "Machine Learning 101" project. I managed t
 1. Configure and trained a support vector machine using scikit-learn to classify the whales based on their fluke images
 2. Improve the accuracy of the classifier by training a TensorFlow object detection model to detect the fluke inside the image and crop out the surroundings
 
+This is not the best results and did not even make to the top 50% in the leaderboard at the time of submission, but I am happy about the progress I made on this project.
+
 Following things were planned to do, but could not be achieved before the deadline.
 1. Developing a segmentation model based on TensorFlow to extract only the fluke from the background
-<center>
-  <img src="./images/segment_original.jpg"  width="350"/>
-  <img src="./images/segment.png"  width="350"/>
-</center>
+  <center>
+    <img src="./images/segment_original.jpg"  width="350"/>
+    <img src="./images/segment.png"  width="350"/>
+  </center>
 2. Do a perspective/rotations transformation on possible extracted whale fluke such that each fluke can be viewed as an image take from the same angle.
 
-Doing the suggested changes may improve the accuracy of the predictions more.
+Doing the suggested changes may improve the accuracy of the predictions more. Hopefully, during the summer I might get some time to improve my results. 
 
 
-[[Back to top](#contents)]
-<a name="combined"></a>
-## Combining Classifier with Cropped Images
-As described previously, the basic classifier did perform poorly. Therefore, a TensorFlow model for cropping the image was developed. I ran this fluke detection and cropping machine learning model on both training and testing data first. The classifier was then run on the cropped data. The results show that the cropping improved the accuracy of the predictions.
 
 [[Back to top](#contents)]
 <a name="running"></a>

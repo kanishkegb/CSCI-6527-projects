@@ -1,10 +1,11 @@
 from sklearn import svm, metrics
-from data_io import load_data, load_test_data
+from data_io import load_cropped_train_data, load_cropped_test_data
 
 import argparse
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 import pandas as pd
 import pickle
 import pdb
@@ -28,19 +29,19 @@ def train_classifier(ids, image_names, images):
         resized_image = cv2.resize(gray, (resize_h, resize_w))
         whales[i, :] = resized_image.reshape(1, -1)[0].astype(np.float64)
         i += 1
-
+    psb.set_trace()
     classifier = svm.SVC(verbose=True)#, probability=True)
     classifier.fit(whales, ids)
 
-    print('Predicting ...')
-    expected = ids[n_samples // 200:]
-    predicted = classifier.predict(whales[n_samples // 200:])
-
-    print('Classification report for classifier {}:\n{}\n'.format(
-          classifier,  metrics.classification_report(expected, predicted)
-          ))
-    print('Confusion matrix:\n{}'.format(metrics.confusion_matrix(expected,
-          predicted)))
+    # print('Predicting ...')
+    # expected = ids[n_samples // 200:]
+    # predicted = classifier.predict(whales[n_samples // 200:])
+    #
+    # print('Classification report for classifier {}:\n{}\n'.format(
+    #       classifier,  metrics.classification_report(expected, predicted)
+    #       ))
+    # print('Confusion matrix:\n{}'.format(metrics.confusion_matrix(expected,
+    #       predicted)))
 
     return classifier, whales
 
@@ -82,20 +83,20 @@ if __name__ == '__main__':
 
     skip_new_whales = True
 
-    ids, image_names, images = load_data(path_prefix, read_data_again,
-    read_all_data, skip_new_whales)
+    ids, image_names, images = load_cropped_train_data(path_prefix,
+        read_data_again, read_all_data, skip_new_whales)
 
     pdb.set_trace()
     if train_data:
         clf, whales = train_classifier(ids, image_names, images)
-        with open('trained_classifier.pkl', 'wb') as f:
+        with open('trained_classifier_cropped.pkl', 'wb') as f:
             pickle.dump(clf, f)
     else:
-        with open('trained_classifier.pkl', 'rb') as f:
+        with open('trained_classifier_cropped.pkl', 'rb') as f:
             clf = pickle.load(f)
 
-    test_image_names, test_images = load_test_data(path_prefix, read_data_again,
-                                                   read_all_data)
+    test_image_names, test_images = load_cropped_test_data(path_prefix,
+        read_data_again, read_all_data)
     print('Predicting ...')
     n_samples= len(test_images)
     resize_h = 100
@@ -126,11 +127,32 @@ if __name__ == '__main__':
           predicted)))
 
     predicted = clf.predict(test_whales)
-    with open('predicted_test_whales.pkl', 'wb') as f:
+    with open('predicted_test_whales_cropped.pkl', 'wb') as f:
         pickle.dump(predicted, f)
         pickle.dump(test_image_names, f)
 
-    out_data = {'Id':predicted, 'Image':test_image_names}
+    all_test_files_path = os.path.join('..', '..', 'Whale_ID', 'test')
+    all_test_data = []
+    all_count = 0
+    for im in os.listdir(all_test_files_path):
+        if im.endswith('.jpg'):
+            all_count += 1
+            all_test_data.append(im)
+    print('All images in test dir: {}'.format(all_count))
+    print('Predicted images: {}'.format(len(predicted)))
+    print('Categorizing unidentified whales as new_whales ...')
+    added_count = 0
+    predicted_list = predicted.tolist()
+    for whale in all_test_data:
+        if not whale in test_image_names:
+            added_count += 1
+            # pdb.set_trace()
+            predicted_list.append('new_whale')
+            test_image_names.append(whale)
+    print('Added {} new_whales'.format(added_count))
+    # pdb.set_trace()
+
+    out_data = {'Image':test_image_names, 'Id':predicted_list}
     df = pd.DataFrame(data=out_data)
     df.to_csv('predictions.csv', index=False, columns=['Image', 'Id'])
     pdb.set_trace()
